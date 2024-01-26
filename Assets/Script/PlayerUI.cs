@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using TMPro;
 using UnityEngine;
 
-public class PlayerUI : MonoBehaviour
+public class PlayerUI : NetworkBehaviour
 {
     [SerializeField] private PlayerStatus playerStatus;
     [SerializeField] private TextMeshProUGUI pulseTxt;
@@ -13,7 +14,7 @@ public class PlayerUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -22,6 +23,13 @@ public class PlayerUI : MonoBehaviour
         pulseTxt.text = "Pulse : " + playerStatus.pulse.ToString();
         urgeTxt.text = "Urge : " + playerStatus.urge.ToString();
         sunflowerText.text = "Sunflower Seed : " + playerStatus.sunflower.ToString();
-        timeText.text = "Time : " + GameManager.instance.GetTimeNow().ToString("0.00");
+        // timeText.text = "Time : " + GameManager.instance.timeCount.ToString("0.00");
+        GetNowTime();
+    }
+
+    [Command]
+    void GetNowTime()
+    {
+        timeText.text = "Time : " + GameManager.instance.timeCount.ToString("0.00");
     }
 }

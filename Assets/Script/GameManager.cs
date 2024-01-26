@@ -28,10 +28,4 @@ public class GameManager : NetworkBehaviour
             timeCount -= Time.deltaTime;
         }
     }
-
-    [Command]
-    public float GetTimeNow()
-    {
-        return this.timeCount;
-    }
 }
