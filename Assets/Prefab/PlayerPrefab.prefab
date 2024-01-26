@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 5235278239457010257}
   - component: {fileID: 3616084177877631488}
   - component: {fileID: 2985583717845918067}
-  - component: {fileID: -1143099111393529061}
+  - component: {fileID: 4220447289774710583}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Untagged
@@ -303,7 +303,7 @@ MonoBehaviour:
   syncInterval: 0
   moveSpeed: 5
   rb: {fileID: 8101226345636140867}
---- !u!114 &-1143099111393529061
+--- !u!114 &4220447289774710583
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -315,7 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
+  syncDirection: 1
   syncMode: 0
   syncInterval: 0
   target: {fileID: 8677273986448332705}
