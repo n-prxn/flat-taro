@@ -27,10 +27,13 @@ public class PlayerEventControll : NetworkBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("SunflowerSeed"))
+        if (this.isLocalPlayer)
         {
-            playerStatus.sunflower++;
-            DestroySunflower(other.gameObject);
+            if (other.CompareTag("SunflowerSeed"))
+            {
+                playerStatus.sunflower++;
+                DestroySunflower(other.gameObject);
+            }
         }
     }
 
