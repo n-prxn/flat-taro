@@ -24,7 +24,7 @@ public class PlayerUI : NetworkBehaviour
         urgeTxt.text = "Urge : " + playerStatus.urge.ToString();
         sunflowerText.text = "Sunflower Seed : " + playerStatus.sunflower.ToString();
         // timeText.text = "Time : " + GameManager.instance.timeCount.ToString("0.00");
-        GetNowTime();
+        GetNowTimeCMD();
     }
 
     [Command]
