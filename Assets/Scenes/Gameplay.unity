@@ -314,7 +314,7 @@ MonoBehaviour:
   debugLog: 0
   statisticsGUI: 0
   statisticsLog: 0
---- !u!1001 &522790523
+--- !u!1001 &472540297
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -324,7 +324,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3173277139674789567, guid: f19470f315515d24c86629d93d319888, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.62
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3173277139674789567, guid: f19470f315515d24c86629d93d319888, type: 3}
       propertyPath: m_LocalPosition.y
@@ -361,6 +361,10 @@ PrefabInstance:
     - target: {fileID: 3173277139674789567, guid: f19470f315515d24c86629d93d319888, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3742412715627285454, guid: f19470f315515d24c86629d93d319888, type: 3}
+      propertyPath: sceneId
+      value: 1272179713
       objectReference: {fileID: 0}
     - target: {fileID: 6591518076237148348, guid: f19470f315515d24c86629d93d319888, type: 3}
       propertyPath: m_Name
@@ -626,4 +630,4 @@ SceneRoots:
   - {fileID: 1050653970}
   - {fileID: 391427359}
   - {fileID: 235556335}
-  - {fileID: 522790523}
+  - {fileID: 472540297}

@@ -25,12 +25,19 @@ public class PlayerEventControll : NetworkBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.collider.CompareTag("SunflowerSeed"))
+        if (other.CompareTag("SunflowerSeed"))
         {
-            Debug.Log("Hit Sunflower");
+            playerStatus.sunflower++;
+            DestroySunflower(other.gameObject);
         }
+    }
+
+    [Command]
+    void DestroySunflower(GameObject sunflower)
+    {
+        Destroy(sunflower);
     }
 
 }
