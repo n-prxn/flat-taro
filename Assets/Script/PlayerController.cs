@@ -6,7 +6,7 @@ using Mirror;
 public class PlayerController : NetworkBehaviour
 {
     [SerializeField]
-    public float moveSpeed;
+    public float moveSpeed = 5f;
     public Rigidbody2D rb;
     private Vector2 moveDirection;
 
