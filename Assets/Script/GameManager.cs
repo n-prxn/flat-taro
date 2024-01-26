@@ -22,6 +22,8 @@ public class GameManager : NetworkBehaviour
     }
 
     void TimeCounter(){
-        timeCount -= Time.deltaTime;
+        if(timeCount > 0){
+            timeCount -= Time.deltaTime;
+        }
     }
 }

@@ -9,7 +9,7 @@ public class PlayerStatus : MonoBehaviour
     public int urge = 100;
     public int sunflower = 0;
 
-    private float sprintTimeCounter = 1 , restTimeCounter = 3 , pulseTimeCounter = 1;
+    private float sprintTimeCounter = 1, restTimeCounter = 3, pulseTimeCounter = 1, urgeTimeCounter = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +18,13 @@ public class PlayerStatus : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        CheckSprint();
+        CheckRest();
+        CheckUrge();
+    }
+
+    void CheckSprint()
     {
         if (playerController.IsSprint)
         {
@@ -30,22 +37,40 @@ public class PlayerStatus : MonoBehaviour
                 pulse += 20;
                 sprintTimeCounter = 1;
             }
-        }else{
+        }
+        else
+        {
             restTimeCounter -= Time.deltaTime;
         }
+    }
 
-        if(restTimeCounter <= 0){
+    void CheckRest()
+    {
+        if (restTimeCounter <= 0)
+        {
             pulseTimeCounter -= Time.deltaTime;
 
-            if(pulse <= 300){
+            if (pulse <= 300)
+            {
                 pulse = 300;
                 restTimeCounter = 3;
             }
 
-            if(pulseTimeCounter <= 0){
+            if (pulseTimeCounter <= 0)
+            {
                 pulse -= 2;
                 pulseTimeCounter = 1;
             }
+        }
+    }
+
+    void CheckUrge()
+    {
+        urgeTimeCounter -= Time.deltaTime;
+        if (pulseTimeCounter <= 0)
+        {
+            urge -= 2;
+            urgeTimeCounter = 1;
         }
     }
 }
