@@ -18,7 +18,8 @@ public class GameManager : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        TimeCounter();
+        if(isServer)
+            TimeCounter();
     }
 
     void TimeCounter()
