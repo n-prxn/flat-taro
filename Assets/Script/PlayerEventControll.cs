@@ -24,4 +24,13 @@ public class PlayerEventControll : NetworkBehaviour
             }
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.collider.CompareTag("SunflowerSeed"))
+        {
+            Debug.Log("Hit Sunflower");
+        }
+    }
+
 }
