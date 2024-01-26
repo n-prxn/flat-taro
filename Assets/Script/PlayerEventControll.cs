@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerEventControll : NetworkBehaviour
 {
-    PlayerStatus playerStatus;
+    [SerializeField] PlayerStatus playerStatus;
 
     // Start is called before the first frame update
     void Start()
