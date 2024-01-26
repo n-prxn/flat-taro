@@ -179,7 +179,7 @@ MonoBehaviour:
   offlineScene: 
   onlineScene: 
   transport: {fileID: 391427362}
-  networkAddress: localhost
+  networkAddress: guestcloud.duckdns.org
   maxConnections: 100
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
