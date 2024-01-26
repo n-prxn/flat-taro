@@ -9,9 +9,12 @@ public class PlayerController : NetworkBehaviour
     [SerializeField]
     public float moveSpeed = 5f;
     public Rigidbody2D rb;
+    public Transform hamsterTF;
     private Vector2 moveDirection;
+    private int faceDirection = 1;
     private bool isSprint = false;
     public bool IsSprint { get => isSprint; set => isSprint = value; }
+    private bool isIdle = true;
     Camera cam;
 
     private void Awake()
@@ -56,10 +59,31 @@ public class PlayerController : NetworkBehaviour
             isSprint = false;
 
         moveDirection = new Vector2(moveX, moveY);
+        Flip(moveX);
+
+        if (moveDirection.magnitude == 0)
+            isIdle = true;
+        else
+            isIdle = false;
     }
 
     void Move()
     {
         rb.velocity = new Vector2(moveDirection.x * moveSpeed * (isSprint ? 1.5f : 1f), moveDirection.y * moveSpeed * (isSprint ? 1.5f : 1f));
     }
+
+    void Flip(float moveX)
+    {
+        if (moveX < 0)
+        {
+            hamsterTF.rotation = Quaternion.Euler(0, 180, 0);
+            faceDirection = -1;
+        }
+        else if(moveX > 0)
+        {
+            hamsterTF.rotation = Quaternion.Euler(0, 0, 0);
+            faceDirection = 1;
+        }
+    }
+
 }

@@ -9,7 +9,7 @@ public class PlayerStatus : MonoBehaviour
     public int urge = 100;
     public int sunflower = 0;
 
-    private float sprintTimeCounter = 1, restTimeCounter = 3, pulseTimeCounter = 1, urgeTimeCounter = 1;
+    private float sprintTimeCounter = 1, restTimeCounter = 3, pulseTimeCounter = 0.5f, urgeTimeCounter = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -58,8 +58,8 @@ public class PlayerStatus : MonoBehaviour
 
             if (pulseTimeCounter <= 0)
             {
-                pulse -= 2;
-                pulseTimeCounter = 1;
+                pulse -= 1;
+                pulseTimeCounter = 0.5f;
             }
         }
     }
@@ -67,9 +67,9 @@ public class PlayerStatus : MonoBehaviour
     void CheckUrge()
     {
         urgeTimeCounter -= Time.deltaTime;
-        if (pulseTimeCounter <= 0)
+        if (urgeTimeCounter <= 0)
         {
-            urge -= 2;
+            urge -= 1;
             urgeTimeCounter = 1;
         }
     }
