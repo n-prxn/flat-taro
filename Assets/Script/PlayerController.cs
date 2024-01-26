@@ -16,6 +16,7 @@ public class PlayerController : NetworkBehaviour
     public bool IsSprint { get => isSprint; set => isSprint = value; }
     private bool isIdle = true;
     Camera cam;
+    [SerializeField] GameObject GUIobj;
 
     private void Awake()
     {
@@ -26,7 +27,10 @@ public class PlayerController : NetworkBehaviour
     void Start()
     {
         if (!this.isLocalPlayer)
+        {
             cam.gameObject.SetActive(false);
+            GUIobj.SetActive(false);
+        }
 
     }
 
@@ -79,7 +83,7 @@ public class PlayerController : NetworkBehaviour
             hamsterTF.rotation = Quaternion.Euler(0, 180, 0);
             faceDirection = -1;
         }
-        else if(moveX > 0)
+        else if (moveX > 0)
         {
             hamsterTF.rotation = Quaternion.Euler(0, 0, 0);
             faceDirection = 1;
