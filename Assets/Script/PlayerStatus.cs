@@ -79,7 +79,7 @@ public class PlayerStatus : NetworkBehaviour
 
     void Addsunflower()
     {
-        if (Input.GetKeyDown(KeyCode.Plus))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             sunflower++;
         }
