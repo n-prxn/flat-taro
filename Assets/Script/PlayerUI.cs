@@ -22,6 +22,6 @@ public class PlayerUI : MonoBehaviour
         pulseTxt.text = "Pulse : " + playerStatus.pulse.ToString();
         urgeTxt.text = "Urge : " + playerStatus.urge.ToString();
         sunflowerText.text = "Sunflower Seed : " + playerStatus.sunflower.ToString();
-        timeText.text = "Time : " + GameManager.instance.timeCount;
+        timeText.text = "Time : " + GameManager.instance.timeCount.ToString("0.00");
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
-
+ 
 public class GameManager : NetworkBehaviour
 {
     public static GameManager instance; 
@@ -12,7 +12,7 @@ public class GameManager : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        instance = this;
     }
 
     // Update is called once per frame
@@ -21,7 +21,6 @@ public class GameManager : NetworkBehaviour
         TimeCounter();   
     }
 
-    [Command]
     void TimeCounter(){
         timeCount -= Time.deltaTime;
     }
