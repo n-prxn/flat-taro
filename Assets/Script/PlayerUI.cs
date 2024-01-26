@@ -27,7 +27,7 @@ public class PlayerUI : NetworkBehaviour
         GetNowTime();
     }
 
-    [Command]
+    [Command(requiresAuthority = false)]
     void GetNowTime()
     {
         timeText.text = "Time : " + GameManager.instance.timeCount.ToString("0.00");
