@@ -10,10 +10,18 @@ public class PlayerController : NetworkBehaviour
     public Rigidbody2D rb;
     private Vector2 moveDirection;
 
+    Camera cam;
+
+    private void Awake() {
+        cam = GetComponentInChildren<Camera>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-
+        if(!this.isLocalPlayer)
+            cam.gameObject.SetActive(false);
+            
     }
 
     // Update is called once per frame
