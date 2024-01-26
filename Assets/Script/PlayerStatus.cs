@@ -23,6 +23,7 @@ public class PlayerStatus : MonoBehaviour
         CheckSprint();
         CheckRest();
         CheckUrge();
+        Addsunflower();
     }
 
     void CheckSprint()
@@ -72,6 +73,14 @@ public class PlayerStatus : MonoBehaviour
         {
             urge -= 1;
             urgeTimeCounter = 1;
+        }
+    }
+
+    void Addsunflower()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            sunflower++;
         }
     }
 }
