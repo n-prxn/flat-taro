@@ -27,7 +27,7 @@ public class PlayerUI : NetworkBehaviour
         GetNowTimeCMD();
     }
 
-    [Command]
+    [Command(requiresAuthority = false)]
     void GetNowTimeCMD()
     {
         GetNowTime();
