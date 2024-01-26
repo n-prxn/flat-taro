@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 
-public class PlayerStatus : MonoBehaviour
+public class PlayerStatus : NetworkBehaviour
 {
     [SerializeField] private PlayerController playerController;
     public int pulse = 300;
     public int urge = 100;
+    [SyncVar]
     public int sunflower = 0;
 
     private float sprintTimeCounter = 1, restTimeCounter = 3, pulseTimeCounter = 0.5f, urgeTimeCounter = 1;
@@ -22,6 +24,7 @@ public class PlayerStatus : MonoBehaviour
         CheckSprint();
         CheckRest();
         CheckUrge();
+        Addsunflower();
     }
 
     void CheckSprint()
@@ -71,6 +74,14 @@ public class PlayerStatus : MonoBehaviour
         {
             urge -= 1;
             urgeTimeCounter = 1;
+        }
+    }
+
+    void Addsunflower()
+    {
+        if (Input.GetKeyDown(KeyCode.Plus))
+        {
+            sunflower++;
         }
     }
 }
