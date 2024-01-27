@@ -55,7 +55,7 @@ public class GameManager : NetworkBehaviour
         float rndX, rndY;
         rndX = Random.Range(floor.min.x, floor.max.x);
         rndY = Random.Range(floor.min.y, floor.max.y);
-        Vector3 spawnpoint = new Vector3(rndX, rndY, -0.1f);
+        Vector3 spawnpoint = new Vector3(rndX, rndY, 0f);
         return spawnpoint;
     }
 
@@ -107,7 +107,8 @@ public class GameManager : NetworkBehaviour
 
     void BookSpawnValueTest()
     {
-        BookSpawnTest(Vector3.zero);
+        Vector3 tempPos = RandomSpawnpoint();
+        BookSpawnTest(tempPos);
     }
     [Command(requiresAuthority = false)]
     void BookSpawnTest(Vector3 pos)
