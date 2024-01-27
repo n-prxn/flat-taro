@@ -221,8 +221,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   hasTarget: 0
-  moveSpeed: 0
-  magnetSpeed: 0
+  moveSpeed: 10
+  magnetSpeed: 10
 --- !u!114 &8057544677670310861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,4 +309,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 10
+  m_Radius: 15

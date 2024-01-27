@@ -27,6 +27,11 @@ public class GameManager : NetworkBehaviour
     [SerializeField] float bookSpawnTimer = 0;
     [SerializeField] float bookSpawnTimerRate;
 
+    [Header("=====Vacuum Event=====")]
+    [SerializeField] GameObject VacuumEventPrefab;
+    [SerializeField] float VacuumSpawnTimer = 0;
+    [SerializeField] float VacuumSpawnTimerRate;
+
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +52,10 @@ public class GameManager : NetworkBehaviour
             if (Input.GetKeyDown(KeyCode.M))
             {
                 BookSpawnValueTest();
+            }
+            if (Input.GetKeyDown(KeyCode.N))
+            {
+                VacuumSpawnValueTest();
             }
         }
     }
@@ -94,18 +103,6 @@ public class GameManager : NetworkBehaviour
         NetworkServer.Spawn(Instantiate(sunflowerPrefab, pos, sunflowerPrefab.transform.rotation));
     }
 
-    void BookSpawnTimeCount()
-    {
-        if (bookSpawnTimer >= bookSpawnTimerRate)
-        {
-            SetSunflowerSpawnValue();
-        }
-        else
-        {
-            sunflowerSpawnTimer += Time.deltaTime;
-        }
-    }
-
     void BookSpawnValueTest()
     {
         Vector3 tempPos = RandomSpawnpoint();
@@ -114,7 +111,18 @@ public class GameManager : NetworkBehaviour
     [Command(requiresAuthority = false)]
     void BookSpawnTest(Vector3 pos)
     {
-        NetworkServer.Spawn(Instantiate(BookEventPrefab, pos, sunflowerPrefab.transform.rotation));
+        NetworkServer.Spawn(Instantiate(BookEventPrefab, pos, BookEventPrefab.transform.rotation));
+    }
+
+    void VacuumSpawnValueTest()
+    {
+        Vector3 tempPos = RandomSpawnpoint();
+        VacuumSpawnTest(tempPos);
+    }
+    [Command(requiresAuthority = false)]
+    void VacuumSpawnTest(Vector3 pos)
+    {
+        NetworkServer.Spawn(Instantiate(VacuumEventPrefab, pos, VacuumEventPrefab.transform.rotation));
     }
 
 }

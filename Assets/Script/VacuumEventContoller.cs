@@ -11,6 +11,21 @@ public class VacuumEventContoller : NetworkBehaviour
     Vector3 targetPos;
     [SerializeField] float moveSpeed;
     [SerializeField] float magnetSpeed;
+    [SerializeField] Vector3 vectorX;
+
+    private void Awake()
+    {
+        if (transform.position.x >= 0)
+        {
+            vectorX = Vector3.left;
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else
+        {
+            vectorX = Vector3.right;
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +37,7 @@ public class VacuumEventContoller : NetworkBehaviour
     void Update()
     {
         if (!hasTarget)
-            transform.position += (Vector3.left * Time.deltaTime) * moveSpeed;
+            transform.position += (vectorX * Time.deltaTime) * moveSpeed;
     }
 
     [Client]
