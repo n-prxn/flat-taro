@@ -165,6 +165,7 @@ MonoBehaviour:
   spawnTimer: 0
   spawnTimerRate: 5
   sunflowerPrefab: {fileID: 6591518076237148348, guid: f19470f315515d24c86629d93d319888, type: 3}
+  floorOBJ: {fileID: 1872296264}
   day: 1
 --- !u!4 &235556335
 Transform:

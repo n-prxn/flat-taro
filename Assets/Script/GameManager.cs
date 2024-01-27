@@ -14,13 +14,14 @@ public class GameManager : NetworkBehaviour
     [SerializeField] float spawnTimer = 0;
     [SerializeField] float spawnTimerRate;
     [SerializeField] GameObject sunflowerPrefab;
+    [SerializeField] Renderer floorOBJ;
 
     [SyncVar] public int day = 1;
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
-        floor = this.gameObject.GetComponent<Renderer>().bounds;
+        floor = floorOBJ.bounds;
     }
 
     // Update is called once per frame

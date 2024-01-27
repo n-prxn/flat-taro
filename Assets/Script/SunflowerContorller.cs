@@ -22,24 +22,19 @@ public class SunflowerContorller : NetworkBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Sunflower is Destroy");
         DestroySunflower();
     }
 
     private void OnEnable()
     {
-        SetSunflowerActiveCMD();
-    }
-
-    [Command]
-    void SetSunflowerActiveCMD()
-    {
         SetSunflowerActive();
     }
 
 
-    [ClientRpc]
     void SetSunflowerActive()
     {
+        Debug.Log("Sunflower is Spwan");
         sunflowerSeedImg.SetActive(true);
     }
 
