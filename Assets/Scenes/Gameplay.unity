@@ -206,6 +206,9 @@ MonoBehaviour:
   BookEventPrefab: {fileID: 507176065924967423, guid: 9497fc74a7d31604997bfa0ee01cac5b, type: 3}
   bookSpawnTimer: 0
   bookSpawnTimerRate: 0
+  VacuumEventPrefab: {fileID: 0}
+  VacuumSpawnTimer: 0
+  VacuumSpawnTimerRate: 0
 --- !u!4 &235556335
 Transform:
   m_ObjectHideFlags: 0
@@ -254,6 +257,14 @@ PrefabInstance:
     - target: {fileID: 507176065924967423, guid: 34a88db0ca7853047bffb83bf0d2b808, type: 3}
       propertyPath: m_Name
       value: SoundEvent (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 507176065924967423, guid: 34a88db0ca7853047bffb83bf0d2b808, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2392762556845042075, guid: 34a88db0ca7853047bffb83bf0d2b808, type: 3}
+      propertyPath: sceneId
+      value: 3656777979
       objectReference: {fileID: 0}
     - target: {fileID: 4913319948188028868, guid: 34a88db0ca7853047bffb83bf0d2b808, type: 3}
       propertyPath: m_LocalPosition.x

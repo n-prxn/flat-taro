@@ -8,6 +8,9 @@ public class PlayerInteractContoller : NetworkBehaviour
     [SerializeField] GameObject tempInteractOBJ;
     [SerializeField] GameObject fButton;
     [SerializeField] GameObject isUseButton;
+
+    [Header("Interact Event")]
+    [SerializeField] GameObject shopPanel;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +26,10 @@ public class PlayerInteractContoller : NetworkBehaviour
             if (Input.GetKeyDown(KeyCode.F))
             {
                 tempInteractOBJ.GetComponent<InteractContoller>().IsOnUseFilp();
+                if(tempInteractOBJ.gameObject.name.StartsWith("InteractShopPrefab")){
+                    shopPanel.SetActive(true);
+                    gameObject.GetComponent<PlayerController>().CanPlayerMove = false;
+                }
             }
         }
     }

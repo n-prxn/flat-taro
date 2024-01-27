@@ -6,4 +6,5 @@ using UnityEngine;
 public class ItemSO : ScriptableObject {
     public byte itemID;
     public string itemName;
+    public int price;
 }
