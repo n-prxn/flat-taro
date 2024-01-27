@@ -492,7 +492,7 @@ MonoBehaviour:
   target: {fileID: 8677273986448332705}
   syncPosition: 1
   syncRotation: 1
-  syncScale: 1
+  syncScale: 0
   interpolatePosition: 1
   interpolateRotation: 1
   interpolateScale: 1
