@@ -462,6 +462,7 @@ GameObject:
   - component: {fileID: 4220447289774710583}
   - component: {fileID: 7214546679463954626}
   - component: {fileID: 4314805140004203589}
+  - component: {fileID: 63975658530669024}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -511,7 +512,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!114 &5235278239457010257
@@ -699,6 +700,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.9028661, y: 0.76432896}
   m_EdgeRadius: 0
+--- !u!114 &63975658530669024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4118849966288476014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306d422383f17d5459cfaa03e292e14b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!1 &5438368369147779680
 GameObject:
   m_ObjectHideFlags: 0
