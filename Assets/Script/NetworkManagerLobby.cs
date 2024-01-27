@@ -19,6 +19,8 @@ public class NetworkManagerLobby : NetworkManager
     [SerializeField] private NetworkGamePlayerLobby gamePlayerPrefab;
     [SerializeField] private GameObject playerSpawnSystem;
 
+    [SerializeField] bool isIP;
+
     public static event Action OnClientConnected;
     public static event Action OnClientDisconnected;
     public static event Action<NetworkConnection> OnServerReadied;
