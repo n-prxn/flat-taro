@@ -648,7 +648,7 @@ MonoBehaviour:
   offlineScene: 
   onlineScene: Assets/Scenes/Main Menu.unity
   transport: {fileID: 363655908}
-  networkAddress: 127.0.0.1
+  networkAddress: localhost
   maxConnections: 4
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60

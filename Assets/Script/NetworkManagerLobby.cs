@@ -13,7 +13,7 @@ public class NetworkManagerLobby : NetworkManager
     [Scene] [SerializeField] private string menuScene;
 
     [Header("Room")]
-    [SerializeField] private NetworkRoomPlayerLobby roomPlayerPrefab = null;
+    [SerializeField] private NetworkRoomPlayerLobby roomPlayerPrefab;
 
     public static event Action OnClientConnected;
     public static event Action OnClientDisconnected;
@@ -48,14 +48,14 @@ public class NetworkManagerLobby : NetworkManager
             return;
         }
 
-        if(SceneManager.GetActiveScene().name != menuScene){
+        if(SceneManager.GetActiveScene().name != "Main Menu"){
             conn.Disconnect();
             return;
         }
     }
 
     public override void OnServerAddPlayer(NetworkConnectionToClient conn){
-        if(SceneManager.GetActiveScene().name == menuScene){
+        if(SceneManager.GetActiveScene().name == "Main Menu"){
             bool isLeader = RoomPlayers.Count == 0;
             NetworkRoomPlayerLobby roomPlayerInstance = Instantiate(roomPlayerPrefab);
             roomPlayerInstance.IsLeader = isLeader;
