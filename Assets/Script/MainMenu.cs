@@ -5,16 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private NetworkManagerLobby networkManager;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    [Header("UI")]
+    [SerializeField] private GameObject landingPagePanel;
+
+    public void HostLobby(){
+        networkManager.StartHost();
+        landingPagePanel.SetActive(false);
     }
 
     public void Play(){

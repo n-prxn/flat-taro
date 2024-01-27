@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b9eda9e2ddf977345808387f8509a14b
+guid: 6c728965922b78b45b9d8e7cc504c001
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -121,28 +121,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: slot-2_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 2500
-        height: 2500
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 930, y: 930, z: 930, w: 930}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6b23a664015367a4da35048690c46748
-      internalID: -747938762
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -153,8 +132,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      slot-2_0: -747938762
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
