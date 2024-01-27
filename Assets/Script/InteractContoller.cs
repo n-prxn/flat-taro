@@ -3,8 +3,15 @@ using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
 
+public enum InteractType
+{
+    Shop,
+    Urge
+}
+
 public class InteractContoller : NetworkBehaviour
 {
+    public InteractType interactType;
     [SerializeField][SyncVar] public bool isOnUse;
     // [SerializeField] GameObject fButton;
     // [SerializeField] GameObject isUseButton;

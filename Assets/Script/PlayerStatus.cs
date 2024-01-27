@@ -14,7 +14,14 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField] bool isDead;
     [SerializeField] float deadTime;
 
+    [SerializeField] public bool isInteractUrge;
+
     private float sprintTimeCounter = 1, restTimeCounter = 3, pulseTimeCounter = 0.5f, urgeTimeCounter = 1;
+
+    private void Awake()
+    {
+        isInteractUrge = true;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +35,8 @@ public class PlayerStatus : MonoBehaviour
         {
             CheckSprint();
             CheckRest();
-            CheckUrge();
+            if (isInteractUrge)
+                CheckUrge();
             Addsunflower();
         }
 

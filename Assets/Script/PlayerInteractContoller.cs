@@ -26,9 +26,14 @@ public class PlayerInteractContoller : NetworkBehaviour
             if (Input.GetKeyDown(KeyCode.F))
             {
                 tempInteractOBJ.GetComponent<InteractContoller>().IsOnUseFilp();
-                if(tempInteractOBJ.gameObject.name.StartsWith("InteractShopPrefab")){
-                    shopPanel.SetActive(true);
-                    gameObject.GetComponent<PlayerController>().CanPlayerMove = false;
+                switch (tempInteractOBJ.GetComponent<InteractContoller>().interactType)
+                {
+                    case InteractType.Shop:
+                        shopPanel.SetActive(true);
+                        break;
+                    case InteractType.Urge:
+                        gameObject.GetComponent<PlayerStatus>().isInteractUrge = false;
+                        break;
                 }
             }
         }
