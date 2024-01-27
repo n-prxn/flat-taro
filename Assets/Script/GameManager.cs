@@ -122,7 +122,16 @@ public class GameManager : NetworkBehaviour
     [Command(requiresAuthority = false)]
     void VacuumSpawnTest(Vector3 pos)
     {
-        NetworkServer.Spawn(Instantiate(VacuumEventPrefab, pos, VacuumEventPrefab.transform.rotation));
+        switch (Random.Range(0, 2))
+        {
+            case 0:
+                NetworkServer.Spawn(Instantiate(VacuumEventPrefab, new Vector3(-89f, pos.y, pos.z), VacuumEventPrefab.transform.rotation));
+                break;
+            case 1:
+                NetworkServer.Spawn(Instantiate(VacuumEventPrefab, new Vector3(89f, pos.y, pos.z), VacuumEventPrefab.transform.rotation));
+                break;
+        }
+        // NetworkServer.Spawn(Instantiate(VacuumEventPrefab, pos, VacuumEventPrefab.transform.rotation));
     }
 
 }
