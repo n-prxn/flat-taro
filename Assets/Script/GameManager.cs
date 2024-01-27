@@ -65,7 +65,7 @@ public class GameManager : NetworkBehaviour
         return spawnpoint;
     }
 
-    [ClientRpc]
+    [Command(requiresAuthority = false)]
     void SunflowerSpawn(Vector3 pos)
     {
         GameObject tempOBJ = Instantiate(sunflowerPrefab, pos, sunflowerPrefab.transform.rotation);
