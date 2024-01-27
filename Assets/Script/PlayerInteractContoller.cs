@@ -26,8 +26,9 @@ public class PlayerInteractContoller : NetworkBehaviour
     }
     public void SetActiveInteract(GameObject obj, bool value)
     {
-        if (isLocalPlayer)
+        if (isClient)
             obj.SetActive(value);
+
     }
 
     // private void OnTriggerStay2D(Collider2D other)
@@ -58,5 +59,16 @@ public class PlayerInteractContoller : NetworkBehaviour
                 other.GetComponent<InteractContoller>().IsOnUseFilp(false);
             tempInteractOBJ = null;
         }
+    }
+
+    [Command]
+    void SetActiveInteractCMD(GameObject obj, bool value)
+    {
+        SetActiveInteractRpc(obj, value);
+    }
+    [TargetRpc]
+    void SetActiveInteractRpc(GameObject obj, bool value)
+    {
+        obj.SetActive(value);
     }
 }
