@@ -13,10 +13,14 @@ public class PlayerController : NetworkBehaviour
     private Vector2 moveDirection;
     private int faceDirection = 1;
     private bool isSprint = false;
+    
     public bool IsSprint { get => isSprint; set => isSprint = value; }
     private bool isIdle = true;
     Camera cam;
     [SerializeField] GameObject GUIobj;
+
+    [Header("Animation")]
+    [SerializeField] Animator animator;
 
     private void Awake()
     {
@@ -69,6 +73,9 @@ public class PlayerController : NetworkBehaviour
             isIdle = true;
         else
             isIdle = false;
+
+        animator.SetBool("IsSprint",isSprint);
+        animator.SetBool("IsIdle",isIdle);
     }
 
     void Move()
