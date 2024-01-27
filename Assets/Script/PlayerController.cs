@@ -17,25 +17,31 @@ public class PlayerController : NetworkBehaviour
     private bool isSprint = false;
     public bool IsSprint { get => isSprint; set => isSprint = value; }
     private bool isIdle = true;
+    [SerializeField][SyncVar] bool flip;
 
     [SerializeField] GameObject GUIobj;
     [SerializeField] Animator animator;
 
-    public override void OnStartAuthority(){
+    public override void OnStartAuthority()
+    {
         enabled = true;
     }
 
     // Update is called once per frame
+    // [ClientCallback]
+
     [ClientCallback]
     void Update()
     {
         ProcessInput();
+
     }
 
-    [ClientCallback]
     private void FixedUpdate()
     {
-        Move();
+        if (isLocalPlayer)
+            Move();
+        FlipCmd();
         //Physics Calculations
     }
 
@@ -51,7 +57,7 @@ public class PlayerController : NetworkBehaviour
             isSprint = false;
 
         moveDirection = new Vector2(moveX, moveY);
-        Flip(moveX);
+        // Flip(moveX);
 
         if (moveDirection.magnitude == 0)
             isIdle = true;
@@ -66,19 +72,41 @@ public class PlayerController : NetworkBehaviour
     void Move()
     {
         rb.velocity = new Vector2(moveDirection.x * moveSpeed * (isSprint ? 1.5f : 1f), moveDirection.y * moveSpeed * (isSprint ? 1.5f : 1f));
+        Flip(moveDirection.x);
     }
     [Client]
     void Flip(float moveX)
     {
         if (moveX < 0)
         {
-            hamsterTF.rotation = Quaternion.Euler(0, 180, 0);
+            // hamsterTF.localScale = new Vector3(1f, 1f, 1f);
+            SetFlipCmd(true);
+            // hamsterTF.gameObject.GetComponent<SpriteRenderer>().flipX = flip;
             faceDirection = -1;
         }
         else if (moveX > 0)
         {
-            hamsterTF.rotation = Quaternion.Euler(0, 0, 0);
+            // hamsterTF.localScale = new Vector3(-1f, 1f, 1f);
+            SetFlipCmd(false);
+            // hamsterTF.gameObject.GetComponent<SpriteRenderer>().flipX = flip;
             faceDirection = 1;
         }
+    }
+
+    [Command]
+    void SetFlipCmd(bool value)
+    {
+        flip = value;
+    }
+
+    [Command]
+    void FlipCmd()
+    {
+        Flip();
+    }
+    [ClientRpc]
+    void Flip()
+    {
+        hamsterTF.gameObject.GetComponent<SpriteRenderer>().flipX = flip;
     }
 }
