@@ -4515,7 +4515,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameInputField: {fileID: 1845496733}
   continueButton: {fileID: 1234728802}
-  isIP: 0
+  isIP: 1
   defaultIP: 127.0.0.1
 --- !u!114 &2105586563
 MonoBehaviour:

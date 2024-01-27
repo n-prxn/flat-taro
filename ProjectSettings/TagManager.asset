@@ -8,6 +8,7 @@ TagManager:
   - DeadEvent
   - InteractOBJ
   - VacuumArea
+  - DestroyArea
   layers:
   - Default
   - TransparentFX

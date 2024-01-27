@@ -38,6 +38,11 @@ public class VacuumEventContoller : NetworkBehaviour
     {
         if (!hasTarget)
             transform.position += (vectorX * Time.deltaTime) * moveSpeed;
+        if (!(-90 < transform.position.x && transform.position.x < 90))
+        {
+            NetworkServer.Destroy(this.gameObject);
+        }
+
     }
 
     [Client]
@@ -72,4 +77,5 @@ public class VacuumEventContoller : NetworkBehaviour
         rb.velocity = Vector2.zero;
         hasTarget = false;
     }
+
 }

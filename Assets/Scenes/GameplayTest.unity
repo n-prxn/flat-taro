@@ -219,7 +219,7 @@ MonoBehaviour:
   syncInterval: 0
   timeCount: 180
   day: 1
-  canPlayerMove: 0
+  canPlayerMove: 1
   floor:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
