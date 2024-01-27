@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4665125598117828799}
   - component: {fileID: 7281560562393680227}
   - component: {fileID: 2897959808781011664}
+  - component: {fileID: 1082158979617351905}
   m_Layer: 0
   m_Name: Hamster
   m_TagString: Untagged
@@ -143,6 +144,14 @@ MonoBehaviour:
   positionSensitivity: 0.01
   rotationSensitivity: 0.01
   scaleSensitivity: 0.01
+--- !u!81 &1082158979617351905
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3327395626672084}
+  m_Enabled: 1
 --- !u!1 &509793315575069570
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,18 +179,18 @@ RectTransform:
   m_GameObject: {fileID: 509793315575069570}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5556247508924916932}
   - {fileID: 6497747548136059241}
   m_Father: {fileID: 7379969511743224241}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -725, y: 373.62}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -753, y: 0}
   m_SizeDelta: {x: 414, y: 333}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &8765213901475826503
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -253,11 +262,11 @@ RectTransform:
   - {fileID: 9217287164005362329}
   m_Father: {fileID: 7379969511743224241}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 41.309814, y: 139.99997}
-  m_SizeDelta: {x: 193.38062, y: 81.261}
-  m_Pivot: {x: 0, y: 0.5}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -40, y: -40}
+  m_SizeDelta: {x: 193.38062, y: 81.26099}
+  m_Pivot: {x: 1, y: 1}
 --- !u!222 &905184114048114922
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -397,8 +406,8 @@ RectTransform:
   m_GameObject: {fileID: 1800270373513939088}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4289014114996980311}
   - {fileID: 6074058996232535339}
@@ -406,7 +415,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -772, y: -347.3}
+  m_AnchoredPosition: {x: -772, y: -360}
   m_SizeDelta: {x: 242, y: 243}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4294921972306009836
@@ -427,7 +436,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9218480517974357733}
   - component: {fileID: 2391843666855522670}
-  - component: {fileID: 8227221542403221913}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -501,14 +509,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &8227221542403221913
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2432046413118664009}
-  m_Enabled: 1
 --- !u!1 &2770090210320474422
 GameObject:
   m_ObjectHideFlags: 0

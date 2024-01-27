@@ -41,6 +41,9 @@ public class PlayerUI : NetworkBehaviour
     void UpdatePulse(){
         Animator animator = pulseImg.GetComponent<Animator>();
         animator.speed = 1 + ((float)playerStatus.pulse - 300f) / 75f;
+
+        /*float heartScale = ((float)playerStatus.pulse) / 600f;
+        pulseImg.transform.localScale = new Vector3(heartScale,heartScale,heartScale);*/
     }
 
     [ClientRpc]

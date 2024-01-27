@@ -106,7 +106,10 @@ public class NetworkRoomPlayerLobby : NetworkBehaviour
     public void HandleReadyToStart(bool readyToStart)
     {
         if (!isLeader)
+        {
+            startGameButton.gameObject.SetActive(false);
             return;
+        }
 
         startGameButton.interactable = readyToStart;
     }
