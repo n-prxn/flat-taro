@@ -21,25 +21,25 @@ public class InteractContoller : NetworkBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            if (isOnUse)
-                other.GetComponent<PlayerInteractContoller>().SetActiveInteract(isUseButton, true);
-            else
-                other.GetComponent<PlayerInteractContoller>().SetActiveInteract(fButton, true);
-        }
-    }
+    // private void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     if (other.CompareTag("Player"))
+    //     {
+    //         if (isOnUse)
+    //             other.GetComponent<PlayerInteractContoller>().SetActiveInteract(isUseButton, true);
+    //         else
+    //             other.GetComponent<PlayerInteractContoller>().SetActiveInteract(fButton, true);
+    //     }
+    // }
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            other.GetComponent<PlayerInteractContoller>().SetActiveInteract(isUseButton, false);
-            other.GetComponent<PlayerInteractContoller>().SetActiveInteract(fButton, false);
-        }
-    }
+    // private void OnTriggerExit2D(Collider2D other)
+    // {
+    //     if (other.CompareTag("Player"))
+    //     {
+    //         other.GetComponent<PlayerInteractContoller>().SetActiveInteract(isUseButton, false);
+    //         other.GetComponent<PlayerInteractContoller>().SetActiveInteract(fButton, false);
+    //     }
+    // }
 
     [Command(requiresAuthority = false)]
     public void IsOnUseFilp()
