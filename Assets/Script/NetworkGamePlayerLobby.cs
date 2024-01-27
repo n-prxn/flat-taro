@@ -6,7 +6,7 @@ using UnityEngine;
 public class NetworkGamePlayerLobby : NetworkBehaviour
 {
     [SyncVar]
-    private string DisplayName = "Loading...";
+    private string displayName = "Loading...";
 
     private NetworkManagerLobby room;
     private NetworkManagerLobby Room
@@ -32,6 +32,6 @@ public class NetworkGamePlayerLobby : NetworkBehaviour
 
     [Server]
     public void SetDisplayName(string displayName){
-        this.DisplayName = displayName;
+        this.displayName = displayName;
     }
 }

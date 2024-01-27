@@ -17,9 +17,11 @@ public class NetworkManagerLobby : NetworkManager
 
     [Header("Game")]
     [SerializeField] private NetworkGamePlayerLobby gamePlayerPrefab;
+    [SerializeField] private GameObject playerSpawnSystem;
 
     public static event Action OnClientConnected;
     public static event Action OnClientDisconnected;
+    public static event Action<NetworkConnection> OnServerReadied;
 
     public List<NetworkRoomPlayerLobby> RoomPlayers {get;} = new List<NetworkRoomPlayerLobby>();
     public List<NetworkGamePlayerLobby> GamePlayers {get;} = new List<NetworkGamePlayerLobby>();
@@ -109,17 +111,24 @@ public class NetworkManagerLobby : NetworkManager
     }
 
     public override void ServerChangeScene(string newSceneName){
-        if(SceneManager.GetActiveScene().name == "Main Menu" && newSceneName.StartsWith("Gameplay")){
-            for(int i = RoomPlayers.Count - 1; i >= 0 ; i++){
+        if(SceneManager.GetActiveScene().name == "Main Menu" && newSceneName == "Gameplay"){
+            /*for(int i = RoomPlayers.Count - 1; i >= 0 ; i--){
                 var conn = RoomPlayers[i].connectionToClient;
                 var gamePlayerInstance = Instantiate(gamePlayerPrefab);
                 gamePlayerInstance.SetDisplayName(RoomPlayers[i].DisplayName);
 
                 NetworkServer.Destroy(conn.identity.gameObject);
                 NetworkServer.ReplacePlayerForConnection(conn, gamePlayerInstance.gameObject);
-            }
+            }*/
+            GameObject playerSpawnSystemInstance = Instantiate(playerSpawnSystem);
+            NetworkServer.Spawn(playerSpawnSystemInstance);
         }
 
         base.ServerChangeScene(newSceneName);
+    }
+
+    public override void OnServerReady(NetworkConnectionToClient conn){
+        base.OnServerReady(conn);
+        OnServerReadied?.Invoke(conn);
     }
 }
