@@ -609,7 +609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b0fecffa3f624585964b0d0eb21b18e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  port: 7777
+  port: 7776
   DualMode: 1
   NoDelay: 1
   Interval: 10
@@ -653,7 +653,7 @@ MonoBehaviour:
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 4118849966288476014, guid: e09f5824d2779934ab0f55e28400abc3, type: 3}
+  playerPrefab: {fileID: 8778672320756428996, guid: d7b06793ad496d449a1c0aebe7ffaef9, type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
   spawnPrefabs: []
@@ -672,11 +672,11 @@ MonoBehaviour:
   evaluationMethod: 0
   evaluationInterval: 3
   timeInterpolationGui: 0
-  minPlayers: 2
+  minPlayers: 1
   menuScene: Assets/Scenes/Main Menu.unity
   roomPlayerPrefab: {fileID: 1080472214519487418, guid: deff0a193a7291e489d2ddbf1287e70a, type: 3}
   gamePlayerPrefab: {fileID: 3796487480990380577, guid: 524ea45dc5b510e438c6cbe0d9f9a8fe, type: 3}
-  playerSpawnSystem: {fileID: 2994958684809566381, guid: 6281591a4b1fe6542b6e40269d9584f3, type: 3}
+  playerSpawnSystem: {fileID: 8332293805065079446, guid: ae3d878f63cc1dc47ad84b9cf6f8d1c4, type: 3}
 --- !u!1 &449653423
 GameObject:
   m_ObjectHideFlags: 0
