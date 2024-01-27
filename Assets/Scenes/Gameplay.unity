@@ -160,8 +160,8 @@ MonoBehaviour:
   floor:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
-  subflowerCount: 0
-  MaxSubflower: 10
+  sunflowerCount: 0
+  MaxSunflower: 10
   spawnTimer: 0
   spawnTimerRate: 5
   sunflowerPrefab: {fileID: 6591518076237148348, guid: f19470f315515d24c86629d93d319888, type: 3}

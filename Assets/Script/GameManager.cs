@@ -9,8 +9,8 @@ public class GameManager : NetworkBehaviour
     [SyncVar] public float timeCount = 180;
 
     [SerializeField] Bounds floor;
-    public float subflowerCount = 0;
-    public float MaxSubflower;
+    [SyncVar] public float sunflowerCount = 0;
+    public float MaxSunflower;
     [SerializeField] float spawnTimer = 0;
     [SerializeField] float spawnTimerRate;
     [SerializeField] GameObject sunflowerPrefab;
@@ -30,7 +30,8 @@ public class GameManager : NetworkBehaviour
         if (isServer)
         {
             TimeCounter();
-            SunflowerSpawnTimeCount();
+            if (sunflowerCount < MaxSunflower)
+                SunflowerSpawnTimeCount();
         }
     }
 
@@ -57,6 +58,7 @@ public class GameManager : NetworkBehaviour
     public void SetSunflowerSpawnValue()
     {
         spawnTimer = 0f;
+        sunflowerCount++;
         Vector3 tempPos = RandomSpawnpoint();
         SunflowerSpawn(tempPos);
     }

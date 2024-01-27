@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class SunflowerContorller : NetworkBehaviour
 {
-    [SyncVar] public bool canUse;
+    public bool canUse;
     [SerializeField] GameObject sunflowerSeedImg;
 
     // Start is called before the first frame update
@@ -24,7 +24,11 @@ public class SunflowerContorller : NetworkBehaviour
 
     private void Awake()
     {
-        Debug.Log("Try Spawn Sunflower");
+        if (isServer)
+        {
+            SetSunflowerActive(false);
+            Invoke("SetCanUse", 0.1f);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -33,21 +37,21 @@ public class SunflowerContorller : NetworkBehaviour
         {
             Debug.Log("Destroy sunflower");
             GameManager.instance.SetSunflowerSpawnValue();
+            GameManager.instance.sunflowerCount--;
             NetworkServer.Destroy(this.gameObject);
         }
     }
 
     void SetCanUse()
     {
-        Debug.Log("Sunflower Can Spawn");
-        canUse = true;
-        SetSunflowerActive();
+        SetSunflowerActive(true);
     }
 
     [ClientRpc]
-    void SetSunflowerActive()
+    void SetSunflowerActive(bool value)
     {
-        sunflowerSeedImg.SetActive(true);
+        canUse = value;
+        sunflowerSeedImg.SetActive(value);
     }
 
 }

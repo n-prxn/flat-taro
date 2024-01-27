@@ -37,6 +37,7 @@ public class PlayerEventControll : NetworkBehaviour
     [Command]
     void DestroySunflower(GameObject sunflower)
     {
+        GameManager.instance.sunflowerCount--;
         NetworkServer.Destroy(sunflower);
     }
 

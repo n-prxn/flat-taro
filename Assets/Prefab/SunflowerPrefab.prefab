@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6479455807783313673
 Transform:
   m_ObjectHideFlags: 0
@@ -233,7 +233,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  canUse: 0
+  canUse: 1
   sunflowerSeedImg: {fileID: 6056273208812047580}
 --- !u!50 &-4207354994796387989
 Rigidbody2D:
