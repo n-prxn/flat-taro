@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using UnityEngine.UI;
+using Cinemachine;
+using Unity.VisualScripting;
 
 public class PlayerController : NetworkBehaviour
 {
@@ -15,31 +17,9 @@ public class PlayerController : NetworkBehaviour
     private bool isSprint = false;
     public bool IsSprint { get => isSprint; set => isSprint = value; }
     private bool isIdle = true;
-    Camera cam;
+
     [SerializeField] GameObject GUIobj;
     [SerializeField] Animator animator;
-
-    private void Awake()
-    {
-        cam = GetComponentInChildren<Camera>();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        if (!this.isLocalPlayer)
-        {
-            cam.gameObject.SetActive(false);
-            GUIobj.SetActive(false);
-        }
-    }
-
-    public override void OnStartAuthority(){
-        if(this.isLocalPlayer){
-            cam.gameObject.SetActive(true);
-            GUIobj.SetActive(true);
-        }
-    }
 
     // Update is called once per frame
     void Update()
@@ -77,8 +57,8 @@ public class PlayerController : NetworkBehaviour
         else
             isIdle = false;
 
-        animator.SetBool("isIdle",isIdle);
-        animator.SetBool("isSprint",isSprint);
+        animator.SetBool("isIdle", isIdle);
+        animator.SetBool("isSprint", isSprint);
     }
 
     void Move()
@@ -99,5 +79,4 @@ public class PlayerController : NetworkBehaviour
             faceDirection = 1;
         }
     }
-
 }
