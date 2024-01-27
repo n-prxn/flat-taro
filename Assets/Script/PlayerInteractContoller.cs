@@ -13,20 +13,17 @@ public class PlayerInteractContoller : NetworkBehaviour
     }
 
     // Update is called once per frame
+    [ClientCallback]
     void Update()
     {
-        if (isLocalPlayer)
+        if (tempInteractOBJ != null)
         {
-            if (tempInteractOBJ != null)
+            if (Input.GetKeyDown(KeyCode.F))
             {
-                if (Input.GetKeyDown(KeyCode.F))
-                {
-                    tempInteractOBJ.GetComponent<InteractContoller>().IsOnUseFilp();
-                }
+                tempInteractOBJ.GetComponent<InteractContoller>().IsOnUseFilp();
             }
         }
     }
-
     public void SetActiveInteract(GameObject obj, bool value)
     {
         if (isLocalPlayer)
@@ -42,24 +39,24 @@ public class PlayerInteractContoller : NetworkBehaviour
     //                 Debug.Log("Is on strry");
     //         }
     // }
-
+    [Client]
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (isLocalPlayer)
-            if (other.CompareTag("InteractOBJ"))
-            {
-                if (!other.GetComponent<InteractContoller>().isOnUse)
-                    tempInteractOBJ = other.gameObject;
-            }
+        if (other.CompareTag("InteractOBJ"))
+        {
+            if (!other.GetComponent<InteractContoller>().isOnUse)
+                tempInteractOBJ = other.gameObject;
+        }
     }
+    [Client]
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (isLocalPlayer)
-            if (other.CompareTag("InteractOBJ"))
-            {
-                if (tempInteractOBJ != null)
-                    other.GetComponent<InteractContoller>().IsOnUseFilp(false);
-                tempInteractOBJ = null;
-            }
+
+        if (other.CompareTag("InteractOBJ"))
+        {
+            if (tempInteractOBJ != null)
+                other.GetComponent<InteractContoller>().IsOnUseFilp(false);
+            tempInteractOBJ = null;
+        }
     }
 }

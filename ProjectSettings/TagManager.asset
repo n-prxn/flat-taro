@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SunflowerSeed
   - DeadEvent
+  - InteractOBJ
   layers:
   - Default
   - TransparentFX
