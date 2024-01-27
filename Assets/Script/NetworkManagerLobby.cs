@@ -15,10 +15,14 @@ public class NetworkManagerLobby : NetworkManager
     [Header("Room")]
     [SerializeField] private NetworkRoomPlayerLobby roomPlayerPrefab;
 
+    [Header("Game")]
+    [SerializeField] private NetworkGamePlayerLobby gamePlayerPrefab;
+
     public static event Action OnClientConnected;
     public static event Action OnClientDisconnected;
 
     public List<NetworkRoomPlayerLobby> RoomPlayers {get;} = new List<NetworkRoomPlayerLobby>();
+    public List<NetworkGamePlayerLobby> GamePlayers {get;} = new List<NetworkGamePlayerLobby>();
 
     public override void OnStartServer(){
         spawnPrefabs = Resources.LoadAll<GameObject>("SpawnablePrefabs").ToList();
@@ -93,5 +97,29 @@ public class NetworkManagerLobby : NetworkManager
         }
 
         return true;
+    }
+
+    public void StartGame(){
+        if(SceneManager.GetActiveScene().name == "Main Menu"){
+            if(!IsReadyToStart())
+                return;
+
+            ServerChangeScene("Gameplay");
+        }
+    }
+
+    public override void ServerChangeScene(string newSceneName){
+        if(SceneManager.GetActiveScene().name == "Main Menu" && newSceneName.StartsWith("Gameplay")){
+            for(int i = RoomPlayers.Count - 1; i >= 0 ; i++){
+                var conn = RoomPlayers[i].connectionToClient;
+                var gamePlayerInstance = Instantiate(gamePlayerPrefab);
+                gamePlayerInstance.SetDisplayName(RoomPlayers[i].DisplayName);
+
+                NetworkServer.Destroy(conn.identity.gameObject);
+                NetworkServer.ReplacePlayerForConnection(conn, gamePlayerInstance.gameObject);
+            }
+        }
+
+        base.ServerChangeScene(newSceneName);
     }
 }
