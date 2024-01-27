@@ -5,18 +5,28 @@ using UnityEngine;
 
 public class GameManager : NetworkBehaviour
 {
-    public static GameManager instance;
+    [HideInInspector] public static GameManager instance;
+    [Header("=====Basic=====")]
     [SyncVar] public float timeCount = 180;
+    [SyncVar] public int day = 1;
 
+    [Header("=====Random area=====")]
     [SerializeField] Bounds floor;
-    [SyncVar] public float sunflowerCount = 0;
-    public float MaxSunflower;
-    [SerializeField] float spawnTimer = 0;
-    [SerializeField] float spawnTimerRate;
-    [SerializeField] GameObject sunflowerPrefab;
     [SerializeField] Renderer floorOBJ;
 
-    [SyncVar] public int day = 1;
+    [Header("=====Sunflower Spawner=====")]
+    [SyncVar] public float sunflowerCount = 0;
+    public float MaxSunflower;
+    [SerializeField] float sunflowerSpawnTimer = 0;
+    [SerializeField] float sunflowerSpawnTimerRate;
+    [SerializeField] GameObject sunflowerPrefab;
+
+    [Header("=====Book Event=====")]
+    [SerializeField] GameObject BookEventPrefab;
+    [SerializeField] float bookSpawnTimer = 0;
+    [SerializeField] float bookSpawnTimerRate;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +42,17 @@ public class GameManager : NetworkBehaviour
             TimeCounter();
             if (sunflowerCount < MaxSunflower)
                 SunflowerSpawnTimeCount();
+            // BookSpawnTimeCount();
         }
+    }
+
+    Vector3 RandomSpawnpoint()
+    {
+        float rndX, rndY;
+        rndX = Random.Range(floor.min.x, floor.max.x);
+        rndY = Random.Range(floor.min.y, floor.max.y);
+        Vector3 spawnpoint = new Vector3(rndX, rndY, -0.1f);
+        return spawnpoint;
     }
 
     void TimeCounter()
@@ -45,31 +65,22 @@ public class GameManager : NetworkBehaviour
 
     void SunflowerSpawnTimeCount()
     {
-        if (spawnTimer >= spawnTimerRate)
+        if (sunflowerSpawnTimer >= sunflowerSpawnTimerRate)
         {
             SetSunflowerSpawnValue();
         }
         else
         {
-            spawnTimer += Time.deltaTime;
+            sunflowerSpawnTimer += Time.deltaTime;
         }
     }
 
     public void SetSunflowerSpawnValue()
     {
-        spawnTimer = 0f;
+        sunflowerSpawnTimer = 0f;
         sunflowerCount++;
         Vector3 tempPos = RandomSpawnpoint();
         SunflowerSpawn(tempPos);
-    }
-
-    Vector3 RandomSpawnpoint()
-    {
-        float rndX, rndY;
-        rndX = Random.Range(floor.min.x, floor.max.x);
-        rndY = Random.Range(floor.min.y, floor.max.y);
-        Vector3 spawnpoint = new Vector3(rndX, rndY, -0.1f);
-        return spawnpoint;
     }
 
     [Command(requiresAuthority = false)]
@@ -78,4 +89,17 @@ public class GameManager : NetworkBehaviour
         GameObject tempOBJ = Instantiate(sunflowerPrefab, pos, sunflowerPrefab.transform.rotation);
         NetworkServer.Spawn(tempOBJ);
     }
+
+    void BookSpawnTimeCount()
+    {
+        if (bookSpawnTimer >= bookSpawnTimerRate)
+        {
+            SetSunflowerSpawnValue();
+        }
+        else
+        {
+            sunflowerSpawnTimer += Time.deltaTime;
+        }
+    }
+
 }

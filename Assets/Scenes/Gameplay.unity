@@ -157,16 +157,19 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   timeCount: 180
+  day: 1
   floor:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
+  floorOBJ: {fileID: 1872296264}
   sunflowerCount: 0
   MaxSunflower: 10
-  spawnTimer: 0
-  spawnTimerRate: 5
+  sunflowerSpawnTimer: 0
+  sunflowerSpawnTimerRate: 5
   sunflowerPrefab: {fileID: 6591518076237148348, guid: f19470f315515d24c86629d93d319888, type: 3}
-  floorOBJ: {fileID: 1872296264}
-  day: 1
+  BookEventPrefab: {fileID: 0}
+  bookSpawnTimer: 0
+  bookSpawnTimerRate: 0
 --- !u!4 &235556335
 Transform:
   m_ObjectHideFlags: 0
@@ -266,6 +269,7 @@ MonoBehaviour:
   playerSpawnMethod: 0
   spawnPrefabs:
   - {fileID: 6591518076237148348, guid: f19470f315515d24c86629d93d319888, type: 3}
+  - {fileID: 507176065924967423, guid: 9497fc74a7d31604997bfa0ee01cac5b, type: 3}
   exceptionsDisconnect: 1
   snapshotSettings:
     bufferTimeMultiplier: 2
@@ -564,7 +568,7 @@ Transform:
   m_GameObject: {fileID: 1872296263}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.11245142, y: 0.81, z: 0}
+  m_LocalPosition: {x: -0.11245142, y: 0.81, z: 0.1}
   m_LocalScale: {x: 7.41301, y: 7.41301, z: 7.41301}
   m_ConstrainProportionsScale: 0
   m_Children: []
