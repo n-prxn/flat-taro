@@ -18,25 +18,25 @@ public class PlayerEventControll : NetworkBehaviour
     {
 
     }
-
+    [Client]
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (this.isLocalPlayer)
+
+        if (other.CompareTag("SunflowerSeed"))
         {
-            if (other.CompareTag("SunflowerSeed"))
+            Debug.Log("Is on Sunflower");
+            if (other.gameObject.GetComponent<SunflowerContorller>().canUse)
             {
-                if (other.gameObject.GetComponent<SunflowerContorller>().canUse)
-                {
-                    playerStatus.sunflower++;
-                    DestroySunflower(other.gameObject);
-                }
-            }
-            if (other.CompareTag("DeadEvent"))
-            {
-                Debug.Log(this.name + " is in DeadEvent");
-                this.GetComponent<PlayerStatus>().StartSetDead();
+                playerStatus.sunflower++;
+                DestroySunflower(other.gameObject);
             }
         }
+        if (other.CompareTag("DeadEvent"))
+        {
+            Debug.Log(this.name + " is in DeadEvent");
+            this.GetComponent<PlayerStatus>().StartSetDead();
+        }
+
     }
 
     [Command]
