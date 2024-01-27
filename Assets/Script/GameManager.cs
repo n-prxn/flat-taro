@@ -43,6 +43,10 @@ public class GameManager : NetworkBehaviour
             if (sunflowerCount < MaxSunflower)
                 SunflowerSpawnTimeCount();
             // BookSpawnTimeCount();
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                BookSpawnValueTest();
+            }
         }
     }
 
@@ -86,8 +90,7 @@ public class GameManager : NetworkBehaviour
     [Command(requiresAuthority = false)]
     void SunflowerSpawn(Vector3 pos)
     {
-        GameObject tempOBJ = Instantiate(sunflowerPrefab, pos, sunflowerPrefab.transform.rotation);
-        NetworkServer.Spawn(tempOBJ);
+        NetworkServer.Spawn(Instantiate(sunflowerPrefab, pos, sunflowerPrefab.transform.rotation));
     }
 
     void BookSpawnTimeCount()
@@ -100,6 +103,16 @@ public class GameManager : NetworkBehaviour
         {
             sunflowerSpawnTimer += Time.deltaTime;
         }
+    }
+
+    void BookSpawnValueTest()
+    {
+        BookSpawnTest(Vector3.zero);
+    }
+    [Command(requiresAuthority = false)]
+    void BookSpawnTest(Vector3 pos)
+    {
+        NetworkServer.Spawn(Instantiate(BookEventPrefab, pos, sunflowerPrefab.transform.rotation));
     }
 
 }

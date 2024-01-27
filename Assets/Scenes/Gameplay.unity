@@ -167,7 +167,7 @@ MonoBehaviour:
   sunflowerSpawnTimer: 0
   sunflowerSpawnTimerRate: 5
   sunflowerPrefab: {fileID: 6591518076237148348, guid: f19470f315515d24c86629d93d319888, type: 3}
-  BookEventPrefab: {fileID: 0}
+  BookEventPrefab: {fileID: 507176065924967423, guid: 9497fc74a7d31604997bfa0ee01cac5b, type: 3}
   bookSpawnTimer: 0
   bookSpawnTimerRate: 0
 --- !u!4 &235556335

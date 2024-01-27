@@ -454,6 +454,8 @@ MonoBehaviour:
   pulse: 300
   urge: 100
   sunflower: 0
+  isDead: 0
+  deadTime: 5
 --- !u!114 &2985583717845918067
 MonoBehaviour:
   m_ObjectHideFlags: 0

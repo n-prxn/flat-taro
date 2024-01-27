@@ -10,6 +10,9 @@ public class PlayerStatus : MonoBehaviour
     public int urge = 100;
     public int sunflower = 0;
 
+    [SerializeField] bool isDead;
+    [SerializeField] float deadTime;
+
     private float sprintTimeCounter = 1, restTimeCounter = 3, pulseTimeCounter = 0.5f, urgeTimeCounter = 1;
     // Start is called before the first frame update
     void Start()
@@ -83,4 +86,17 @@ public class PlayerStatus : MonoBehaviour
             sunflower++;
         }
     }
+
+    public void StartSetDead()
+    {
+        StartCoroutine("SetDead");
+    }
+
+    IEnumerator SetDead()
+    {
+        isDead = true;
+        yield return new WaitForSeconds(deadTime);
+        isDead = false;
+    }
+
 }

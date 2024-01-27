@@ -31,6 +31,11 @@ public class PlayerEventControll : NetworkBehaviour
                     DestroySunflower(other.gameObject);
                 }
             }
+            if (other.CompareTag("DeadEvent"))
+            {
+                Debug.Log(this.name + " is in DeadEvent");
+                this.GetComponent<PlayerStatus>().StartSetDead();
+            }
         }
     }
 
