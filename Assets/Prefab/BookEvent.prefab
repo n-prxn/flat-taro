@@ -106,6 +106,10 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  bookList:
+  - {fileID: 5126286034191891675}
+  - {fileID: 8261278111177196893}
+  - {fileID: 6977344937167398795}
   basePos: {fileID: 7298538773425017367}
   nowPos: {x: 0, y: 0}
   tagetPos: {fileID: 3873353550321112561}
@@ -178,7 +182,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4833090488145562877}
@@ -234,7 +238,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6266434461044470118
 Transform:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BookEventContoller : NetworkBehaviour
 {
+    [SerializeField] List<GameObject> bookList;
     [SerializeField] GameObject basePos;
     [SerializeField] Vector2 nowPos;
     [SerializeField] GameObject tagetPos;
@@ -13,6 +14,10 @@ public class BookEventContoller : NetworkBehaviour
     [SerializeField][SyncVar] public bool isDrop;
     [SerializeField] GameObject targetCollider;
 
+    private void Awake()
+    {
+
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -64,6 +69,17 @@ public class BookEventContoller : NetworkBehaviour
     public void SetBookActiveRPC()
     {
         targetCollider.SetActive(true);
+    }
+
+    public void SetRandomBookActive()
+    {
+        if (isServer)
+            RandomBookActiveRPC(Random.Range(0, 3));
+    }
+    [ClientRpc]
+    public void RandomBookActiveRPC(int i)
+    {
+        bookList[i].SetActive(true); ;
     }
 
     public void StartDestroy()
