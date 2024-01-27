@@ -8,10 +8,13 @@ using UnityEngine.SceneManagement;
 public class CameraController : NetworkBehaviour
 {
     public GameObject cam;
+    public GameObject GUIobj;
 
     public override void OnStartAuthority()
+
     {
         cam.SetActive(true);
+        GUIobj.SetActive(true);
     }
 
     private void Update()
