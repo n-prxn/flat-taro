@@ -9,6 +9,7 @@ public class PlayerStatus : MonoBehaviour
     public int pulse = 300;
     public int urge = 100;
     public int sunflower = 0;
+    public ItemSO heldItem;
 
     [SerializeField] bool isDead;
     [SerializeField] float deadTime;

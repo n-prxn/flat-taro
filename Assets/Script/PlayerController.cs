@@ -17,6 +17,9 @@ public class PlayerController : NetworkBehaviour
     private bool isSprint = false;
     public bool IsSprint { get => isSprint; set => isSprint = value; }
     private bool isIdle = true;
+
+    private bool canPlayerMove = true;
+    public bool CanPlayerMove { get => canPlayerMove; set => canPlayerMove = value; }
     [SerializeField][SyncVar] bool flip;
 
     [SerializeField] GameObject GUIobj;
@@ -33,18 +36,20 @@ public class PlayerController : NetworkBehaviour
     [ClientCallback]
     void Update()
     {
-        if (GameManager.instance.canPlayerMove)
+        if (GameManager.instance.canPlayerMove && canPlayerMove)
             ProcessInput();
     }
 
     [ClientCallback]
     private void FixedUpdate()
     {
-        if (GameManager.instance.canPlayerMove)
+        if (GameManager.instance.canPlayerMove && canPlayerMove)
         {
             Move();
             FlipCmd();
-        }else{
+        }
+        else
+        {
             animator.SetBool("isIdle", true);
         }
         //Physics Calculations

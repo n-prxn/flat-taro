@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31ce4ae937da958489871edcb911628e, type: 3}
-  m_Name: Item00
+  m_Name: Item03
   m_EditorClassIdentifier: 
-  itemID: 0
-  itemName: Red Hamster
-  price: 2
+  itemID: 3
+  itemName: Golden Sunflower Seed
+  price: 5
