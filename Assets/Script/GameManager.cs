@@ -46,14 +46,19 @@ public class GameManager : NetworkBehaviour
     {
         if (spawnTimer >= spawnTimerRate)
         {
-            spawnTimer = 0f;
-            Vector3 tempPos = RandomSpawnpoint();
-            SunflowerSpawn(tempPos);
+            SetSunflowerSpawnValue();
         }
         else
         {
             spawnTimer += Time.deltaTime;
         }
+    }
+
+    public void SetSunflowerSpawnValue()
+    {
+        spawnTimer = 0f;
+        Vector3 tempPos = RandomSpawnpoint();
+        SunflowerSpawn(tempPos);
     }
 
     Vector3 RandomSpawnpoint()
