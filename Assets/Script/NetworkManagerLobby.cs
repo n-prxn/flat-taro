@@ -111,20 +111,26 @@ public class NetworkManagerLobby : NetworkManager
     }
 
     public override void ServerChangeScene(string newSceneName){
+        //from Menu to Game
         if(SceneManager.GetActiveScene().name == "Main Menu" && newSceneName == "Gameplay"){
-            /*for(int i = RoomPlayers.Count - 1; i >= 0 ; i--){
+            for(int i = RoomPlayers.Count - 1; i >= 0 ; i--){
                 var conn = RoomPlayers[i].connectionToClient;
                 var gamePlayerInstance = Instantiate(gamePlayerPrefab);
                 gamePlayerInstance.SetDisplayName(RoomPlayers[i].DisplayName);
 
                 NetworkServer.Destroy(conn.identity.gameObject);
                 NetworkServer.ReplacePlayerForConnection(conn, gamePlayerInstance.gameObject);
-            }*/
-            GameObject playerSpawnSystemInstance = Instantiate(playerSpawnSystem);
-            NetworkServer.Spawn(playerSpawnSystemInstance);
+            }
         }
 
         base.ServerChangeScene(newSceneName);
+    }
+
+    public override void OnServerSceneChanged(string sceneName){
+        if(sceneName == "Gameplay"){
+            GameObject playerSpawnSystemInstance = Instantiate(playerSpawnSystem);
+            NetworkServer.Spawn(playerSpawnSystemInstance);
+        }
     }
 
     public override void OnServerReady(NetworkConnectionToClient conn){
