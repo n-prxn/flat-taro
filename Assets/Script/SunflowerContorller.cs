@@ -44,6 +44,6 @@ public class SunflowerContorller : NetworkBehaviour
     [Command]
     void DestroySunflower()
     {
-        Destroy(this);
+        NetworkServer.Destroy(this.gameObject);
     }
 }
