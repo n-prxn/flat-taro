@@ -17,6 +17,7 @@ public class PlayerController : NetworkBehaviour
     private bool isIdle = true;
     Camera cam;
     [SerializeField] GameObject GUIobj;
+    [SerializeField] Animator animator;
 
     private void Awake()
     {
@@ -69,6 +70,9 @@ public class PlayerController : NetworkBehaviour
             isIdle = true;
         else
             isIdle = false;
+
+        animator.SetBool("isIdle",isIdle);
+        animator.SetBool("isSprint",isSprint);
     }
 
     void Move()
