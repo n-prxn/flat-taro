@@ -21,24 +21,25 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] GameObject GUIobj;
     [SerializeField] Animator animator;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (this.isLocalPlayer)
-        {
-            ProcessInput();
-        }
+    public override void OnStartAuthority(){
+        enabled = true;
     }
 
+    // Update is called once per frame
+    [ClientCallback]
+    void Update()
+    {
+        ProcessInput();
+    }
+
+    [ClientCallback]
     private void FixedUpdate()
     {
-        if (this.isLocalPlayer)
-        {
-            Move();
-        }
+        Move();
         //Physics Calculations
     }
 
+    [Client]
     void ProcessInput()
     {
         float moveX = Input.GetAxisRaw("Horizontal");
@@ -61,11 +62,12 @@ public class PlayerController : NetworkBehaviour
         animator.SetBool("isSprint", isSprint);
     }
 
+    [Client]
     void Move()
     {
         rb.velocity = new Vector2(moveDirection.x * moveSpeed * (isSprint ? 1.5f : 1f), moveDirection.y * moveSpeed * (isSprint ? 1.5f : 1f));
     }
-
+    [Client]
     void Flip(float moveX)
     {
         if (moveX < 0)
