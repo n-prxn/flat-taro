@@ -64,7 +64,7 @@ public class GameManager : NetworkBehaviour
         return spawnpoint;
     }
 
-    [Command(requiresAuthority = false)]
+    [ClientRpc]
     void SunflowerSpawn()
     {
         GameObject tempOBJ = Instantiate(sunflowerPrefab, RandomSpawnpoint(), sunflowerPrefab.transform.rotation);
