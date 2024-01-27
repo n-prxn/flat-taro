@@ -121,18 +121,40 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Teddy_0
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 0
+        width: 1717
+        height: 2360
+      alignment: 9
+      pivot: {x: 0.52242285, y: 0.2148305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05121c42f9befb84ab90038c6c71433f
+      internalID: -1850280349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 2d285f5c2b2c73d418f7437b2677601b
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Teddy_0: -1850280349
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: 2
   itemName: Wood Baton
+  itemImage: {fileID: 1808872159, guid: e81f29e4b0710b24c828c7c0f67f422b, type: 3}
   price: 3

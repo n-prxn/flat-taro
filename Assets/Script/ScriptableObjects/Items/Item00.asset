@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: 0
   itemName: Red Hamster
+  itemImage: {fileID: -1817936157, guid: 13bd4c10e85f74e44b21fd0dc29d7f5d, type: 3}
   price: 2
