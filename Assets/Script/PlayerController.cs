@@ -32,7 +32,13 @@ public class PlayerController : NetworkBehaviour
             cam.gameObject.SetActive(false);
             GUIobj.SetActive(false);
         }
+    }
 
+    public override void OnStartAuthority(){
+        if(this.isLocalPlayer){
+            cam.gameObject.SetActive(true);
+            GUIobj.SetActive(true);
+        }
     }
 
     // Update is called once per frame
