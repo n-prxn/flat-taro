@@ -25,50 +25,50 @@ public class BookEventContoller : NetworkBehaviour
 
     }
 
-    void StartDropBook()
+    // void StartDropBook()
+    // {
+    //     if (isServer)
+    //     {
+    //         nowPos = new Vector2(basePos.transform.position.x, basePos.transform.position.y);
+    //         StartCoroutine(DropEvent());
+    //     }
+    // }
+
+    // public void DropUpdate(float percent)
+    // {
+    //     basePos.transform.position = Vector2.Lerp(nowPos, tagetPos.transform.position, Mathf.SmoothStep(0, 1, percent));
+    // }
+
+
+    // IEnumerator DropEvent()
+    // {
+    //     while (elapsedTime <= targetTime)
+    //     {
+    //         elapsedTime += Time.deltaTime;
+    //         float percentComplete = elapsedTime / targetTime;
+    //         DropUpdate(percentComplete);
+    //         // Debug.Log(Vector2.Distance(basePos.transform.position, tagetPos.transform.position));
+    //         yield return null;
+    //     }
+    //     isDrop = true;
+    //     SetBookActive(true);
+    //     StartDestroy();
+    // }
+
+    public void SetBookActive()
     {
         if (isServer)
-        {
-            nowPos = new Vector2(basePos.transform.position.x, basePos.transform.position.y);
-            StartCoroutine(DropEvent());
-        }
+            SetBookActiveRPC();
     }
-
-    public void DropUpdate(float percent)
-    {
-        basePos.transform.position = Vector2.Lerp(nowPos, tagetPos.transform.position, Mathf.SmoothStep(0, 1, percent));
-    }
-
-
-    IEnumerator DropEvent()
-    {
-        while (elapsedTime <= targetTime)
-        {
-            elapsedTime += Time.deltaTime;
-            float percentComplete = elapsedTime / targetTime;
-            DropUpdate(percentComplete);
-            // Debug.Log(Vector2.Distance(basePos.transform.position, tagetPos.transform.position));
-            yield return null;
-        }
-        isDrop = true;
-        SetBookActive(true);
-        StartDestroy();
-    }
-
     [ClientRpc]
-    void SetBookActive(bool value)
+    public void SetBookActiveRPC()
     {
-        targetCollider.SetActive(value);
+        targetCollider.SetActive(true);
     }
 
     public void StartDestroy()
     {
-        StartCoroutine("SetDestroy");
-    }
-
-    IEnumerator SetDestroy()
-    {
-        yield return new WaitForSeconds(0.5f);
         NetworkServer.Destroy(this.gameObject);
     }
+
 }
