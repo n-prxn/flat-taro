@@ -29,6 +29,7 @@ public class GameManager : NetworkBehaviour
         if (isServer)
         {
             TimeCounter();
+            SunflowerSpawn();
         }
     }
 
