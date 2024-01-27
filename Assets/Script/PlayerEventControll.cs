@@ -31,8 +31,11 @@ public class PlayerEventControll : NetworkBehaviour
         {
             if (other.CompareTag("SunflowerSeed"))
             {
-                playerStatus.sunflower++;
-                DestroySunflower(other.gameObject);
+                if (other.gameObject.GetComponent<SunflowerContorller>().canUse)
+                {
+                    playerStatus.sunflower++;
+                    DestroySunflower(other.gameObject);
+                }
             }
         }
     }
