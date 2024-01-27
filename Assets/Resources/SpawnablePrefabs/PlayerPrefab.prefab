@@ -568,6 +568,7 @@ MonoBehaviour:
   moveSpeed: 5
   rb: {fileID: 8101226345636140867}
   hamsterTF: {fileID: 6791014064152213721}
+  flip: 0
   GUIobj: {fileID: 7522299413783299469}
   animator: {fileID: 7281560562393680227}
 --- !u!114 &667781674586138311
