@@ -157,6 +157,14 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   timeCount: 180
+  floor:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  subflowerCount: 0
+  MaxSubflower: 10
+  spawnTimer: 0
+  spawnTimerRate: 5
+  sunflowerPrefab: {fileID: 6591518076237148348, guid: f19470f315515d24c86629d93d319888, type: 3}
   day: 1
 --- !u!4 &235556335
 Transform:
