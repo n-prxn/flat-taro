@@ -50,12 +50,12 @@ public class PlayerInteractContoller : NetworkBehaviour
         {
             if (!other.GetComponent<InteractContoller>().isOnUse)
             {
-                other.GetComponent<PlayerInteractContoller>().SetActiveInteract(isUseButton, true);
+                SetActiveInteract(fButton, true);
                 tempInteractOBJ = other.gameObject;
             }
             else
             {
-                other.GetComponent<PlayerInteractContoller>().SetActiveInteract(fButton, true);
+                SetActiveInteract(isUseButton, true);
             }
 
         }
@@ -69,8 +69,8 @@ public class PlayerInteractContoller : NetworkBehaviour
             if (tempInteractOBJ != null)
                 other.GetComponent<InteractContoller>().IsOnUseFilp(false);
             tempInteractOBJ = null;
-            other.GetComponent<PlayerInteractContoller>().SetActiveInteract(isUseButton, false);
-            other.GetComponent<PlayerInteractContoller>().SetActiveInteract(fButton, false);
+            SetActiveInteract(isUseButton, false);
+            SetActiveInteract(fButton, false);
         }
     }
 
