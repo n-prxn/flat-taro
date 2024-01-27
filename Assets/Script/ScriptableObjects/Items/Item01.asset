@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: 1
   itemName: Hamster Ball
+  itemImage: {fileID: -241357942, guid: 8a23c2f3d6ad75a47ba26973e8e7559b, type: 3}
   price: 5

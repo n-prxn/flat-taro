@@ -14,6 +14,7 @@ public class PlayerUI : NetworkBehaviour
     [SerializeField] private TextMeshProUGUI sunflowerText;
     [SerializeField] private Image timerArm;
     [SerializeField] private TextMeshProUGUI timeText;
+    [SerializeField] private Image itemSlot;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +29,7 @@ public class PlayerUI : NetworkBehaviour
         UpdateTime();
         UpdateUrge();
         UpdatePulse();
+        UpdateHeldItem();
     }
 
     void UpdateTime(){
@@ -44,6 +46,15 @@ public class PlayerUI : NetworkBehaviour
 
         /*float heartScale = ((float)playerStatus.pulse) / 600f;
         pulseImg.transform.localScale = new Vector3(heartScale,heartScale,heartScale);*/
+    }
+
+    void UpdateHeldItem(){
+        if(playerStatus.heldItem == null)
+            itemSlot.gameObject.SetActive(false);
+        else{
+            itemSlot.gameObject.SetActive(true);
+            itemSlot.transform.GetChild(0).GetComponent<Image>().sprite = playerStatus.heldItem.itemImage;
+        }
     }
 
     [ClientRpc]

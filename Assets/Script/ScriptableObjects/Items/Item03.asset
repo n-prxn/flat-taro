@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: 3
   itemName: Golden Sunflower Seed
+  itemImage: {fileID: 692412459, guid: aa093f3610b52e142861a811aec17602, type: 3}
   price: 5

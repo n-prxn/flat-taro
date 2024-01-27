@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: 4
   itemName: Time Bomb
+  itemImage: {fileID: 240595669, guid: eb36cf675bdd08c4da66cb9580301f5b, type: 3}
   price: 6

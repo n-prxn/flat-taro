@@ -121,18 +121,40 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Trex _0
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 48
+        width: 2183
+        height: 2261
+      alignment: 9
+      pivot: {x: 0.4924416, y: 0.12339673}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 136e8367e2c7ce540a6f0a31e4ffda50
+      internalID: -1533366427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 7c141a9b055477d4b9f7ed423e922303
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Trex _0: -1533366427
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

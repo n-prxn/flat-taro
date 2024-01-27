@@ -13,5 +13,6 @@ public class ShopController : MonoBehaviour
             return;
 
         playerStatus.sunflower -= item.price;
+        playerStatus.heldItem = item;
     }
 }
