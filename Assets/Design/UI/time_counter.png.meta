@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2e71d5f0012c07b45a68ed069ec23130
+guid: ac12505bd254a94438eb97dd7c173f45
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -121,18 +121,129 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: time_counter_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 187
+        width: 389
+        height: 455
+      alignment: 9
+      pivot: {x: 0.46207315, y: 0.4011026}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44ef32e015109454790aa9fd23bba71b
+      internalID: -2005599412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: time_counter_2
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 434
+        width: 126
+        height: 195
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 421bbfe17814b4c4396a7b93f9cf98f9
+      internalID: 1400593995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: time_counter_3
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 215
+        width: 127
+        height: 202
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b68ff4fe3e7ec8648badd9b74cd74d02
+      internalID: 508649488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: time_counter_4
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 12
+        width: 124
+        height: 186
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a13f8b4555d92e46b10d49119dac5e6
+      internalID: 214681021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: time_counter_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 394
+        height: 181
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3afbe238ae4da64a8c0ea952046e8b1
+      internalID: 922261316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 2d7e8917bd39d6a429ac7ad210052352
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      time_counter_0: -2005599412
+      time_counter_1: 1212409194
+      time_counter_2: 1400593995
+      time_counter_3: 508649488
+      time_counter_4: 214681021
+      time_counter_5: 922261316
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

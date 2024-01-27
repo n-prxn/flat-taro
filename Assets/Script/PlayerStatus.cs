@@ -23,10 +23,14 @@ public class PlayerStatus : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckSprint();
-        CheckRest();
-        CheckUrge();
-        Addsunflower();
+        if (GameManager.instance.canPlayerMove)
+        {
+            CheckSprint();
+            CheckRest();
+            CheckUrge();
+            Addsunflower();
+        }
+
     }
 
     void CheckSprint()

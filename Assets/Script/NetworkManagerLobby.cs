@@ -18,12 +18,15 @@ public class NetworkManagerLobby : NetworkManager
     [Header("Game")]
     [SerializeField] private NetworkGamePlayerLobby gamePlayerPrefab;
     [SerializeField] private GameObject playerSpawnSystem;
+    [SerializeField] private GameObject roundSystem;
 
     [SerializeField] bool isIP;
 
     public static event Action OnClientConnected;
     public static event Action OnClientDisconnected;
     public static event Action<NetworkConnection> OnServerReadied;
+    public static event Action OnServerStopped;
+
 
     public List<NetworkRoomPlayerLobby> RoomPlayers {get;} = new List<NetworkRoomPlayerLobby>();
     public List<NetworkGamePlayerLobby> GamePlayers {get;} = new List<NetworkGamePlayerLobby>();
@@ -82,7 +85,10 @@ public class NetworkManagerLobby : NetworkManager
     }
 
     public override void OnStopServer(){
+        OnServerStopped?.Invoke();
+
         RoomPlayers.Clear();
+        GamePlayers.Clear();
     }
 
     public void NotifyPlayersOfReadyState(){
@@ -132,6 +138,9 @@ public class NetworkManagerLobby : NetworkManager
         if(sceneName == "Gameplay"){
             GameObject playerSpawnSystemInstance = Instantiate(playerSpawnSystem);
             NetworkServer.Spawn(playerSpawnSystemInstance);
+        
+            GameObject roundSystemInstance = Instantiate(roundSystem);
+            NetworkServer.Spawn(roundSystemInstance);
         }
     }
 

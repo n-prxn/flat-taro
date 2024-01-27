@@ -33,15 +33,20 @@ public class PlayerController : NetworkBehaviour
     [ClientCallback]
     void Update()
     {
-        ProcessInput();
-
+        if (GameManager.instance.canPlayerMove)
+            ProcessInput();
     }
 
     [ClientCallback]
     private void FixedUpdate()
     {
-        Move();
-        FlipCmd();
+        if (GameManager.instance.canPlayerMove)
+        {
+            Move();
+            FlipCmd();
+        }else{
+            animator.SetBool("isIdle", true);
+        }
         //Physics Calculations
     }
 

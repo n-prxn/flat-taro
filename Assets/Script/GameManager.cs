@@ -9,6 +9,7 @@ public class GameManager : NetworkBehaviour
     [Header("=====Basic=====")]
     [SyncVar] public float timeCount = 180;
     [SyncVar] public int day = 1;
+    [SyncVar] public bool canPlayerMove;
 
     [Header("=====Random area=====")]
     [SerializeField] Bounds floor;
@@ -61,7 +62,7 @@ public class GameManager : NetworkBehaviour
 
     void TimeCounter()
     {
-        if (timeCount > 0)
+        if (timeCount > 0 && canPlayerMove)
         {
             timeCount -= Time.deltaTime;
         }
