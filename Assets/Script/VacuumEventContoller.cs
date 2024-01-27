@@ -10,6 +10,7 @@ public class VacuumEventContoller : NetworkBehaviour
     [SerializeField] bool hasTarget;
     Vector3 targetPos;
     [SerializeField] float moveSpeed;
+    [SerializeField] float magnetSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +21,8 @@ public class VacuumEventContoller : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (!hasTarget)
+            transform.position += (Vector3.left * Time.deltaTime) * moveSpeed;
     }
 
     [Client]
@@ -39,7 +41,7 @@ public class VacuumEventContoller : NetworkBehaviour
         if (hasTarget)
         {
             Vector2 targetDirection = (transform.position - targetPos).normalized;
-            rb.velocity = new Vector2(targetDirection.x, targetDirection.y) * moveSpeed;
+            rb.velocity = new Vector2(targetDirection.x, targetDirection.y) * magnetSpeed;
         }
     }
 
@@ -48,5 +50,11 @@ public class VacuumEventContoller : NetworkBehaviour
         rb = obj.GetComponent<Rigidbody2D>();
         targetPos = obj.transform.position;
         hasTarget = true;
+    }
+
+    public void ResetTarget()
+    {
+        rb.velocity = Vector2.zero;
+        hasTarget = false;
     }
 }

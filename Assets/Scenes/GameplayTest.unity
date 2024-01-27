@@ -219,7 +219,7 @@ MonoBehaviour:
   syncInterval: 0
   timeCount: 180
   day: 1
-  canPlayerMove: 1
+  canPlayerMove: 0
   floor:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
@@ -499,6 +499,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2938982613468370924, guid: 4c750195c2db647489becda1cbbfef08, type: 3}
       propertyPath: moveSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2938982613468370924, guid: 4c750195c2db647489becda1cbbfef08, type: 3}
+      propertyPath: magnetSpeed
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3882743591018533495, guid: 4c750195c2db647489becda1cbbfef08, type: 3}

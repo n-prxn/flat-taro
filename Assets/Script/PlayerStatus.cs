@@ -99,7 +99,11 @@ public class PlayerStatus : MonoBehaviour
     IEnumerator SetDead()
     {
         isDead = true;
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        GameManager.instance.canPlayerMove = false;
         yield return new WaitForSeconds(deadTime);
+        gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        GameManager.instance.canPlayerMove = true;
         isDead = false;
     }
 
