@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SunflowerContorller : NetworkBehaviour
 {
-    public bool canUse = false;
+    public bool canUse;
     [SerializeField] GameObject sunflowerSeedImg;
 
     // Start is called before the first frame update
@@ -20,32 +20,4 @@ public class SunflowerContorller : NetworkBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        DestroySunflower();
-    }
-
-    private void OnEnable()
-    {
-        SetSunflowerActiveCMD();
-    }
-
-    [Command]
-    void SetSunflowerActiveCMD()
-    {
-        SetSunflowerActive();
-    }
-
-
-    [ClientRpc]
-    void SetSunflowerActive()
-    {
-        sunflowerSeedImg.SetActive(true);
-    }
-
-    [Command]
-    void DestroySunflower()
-    {
-        Destroy(this);
-    }
 }

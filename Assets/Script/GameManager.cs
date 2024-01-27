@@ -14,13 +14,14 @@ public class GameManager : NetworkBehaviour
     [SerializeField] float spawnTimer = 0;
     [SerializeField] float spawnTimerRate;
     [SerializeField] GameObject sunflowerPrefab;
+    [SerializeField] Renderer floorOBJ;
 
     [SyncVar] public int day = 1;
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
-        floor = this.gameObject.GetComponent<Renderer>().bounds;
+        floor = floorOBJ.bounds;
     }
 
     // Update is called once per frame
@@ -29,7 +30,7 @@ public class GameManager : NetworkBehaviour
         if (isServer)
         {
             TimeCounter();
-            SunflowerSpawn();
+            SunflowerSpawnTimeCount();
         }
     }
 
@@ -41,12 +42,13 @@ public class GameManager : NetworkBehaviour
         }
     }
 
-    void SunflowerSpawn()
+    void SunflowerSpawnTimeCount()
     {
         if (spawnTimer >= spawnTimerRate)
         {
             spawnTimer = 0f;
-            Instantiate(sunflowerPrefab, RandomSpawnpoint(), sunflowerPrefab.transform.rotation);
+            Vector3 tempPos = RandomSpawnpoint();
+            SunflowerSpawn(tempPos);
         }
         else
         {
@@ -61,5 +63,12 @@ public class GameManager : NetworkBehaviour
         rndY = Random.Range(floor.min.y, floor.max.y);
         Vector3 spawnpoint = new Vector3(rndX, rndY, -0.1f);
         return spawnpoint;
+    }
+
+    [Command(requiresAuthority = false)]
+    void SunflowerSpawn(Vector3 pos)
+    {
+        GameObject tempOBJ = Instantiate(sunflowerPrefab, pos, sunflowerPrefab.transform.rotation);
+        NetworkServer.Spawn(tempOBJ);
     }
 }
