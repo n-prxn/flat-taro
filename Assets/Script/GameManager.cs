@@ -47,7 +47,8 @@ public class GameManager : NetworkBehaviour
         if (spawnTimer >= spawnTimerRate)
         {
             spawnTimer = 0f;
-            SunflowerSpawn();
+            Vector3 tempPos = RandomSpawnpoint();
+            SunflowerSpawn(tempPos);
         }
         else
         {
@@ -65,9 +66,9 @@ public class GameManager : NetworkBehaviour
     }
 
     [ClientRpc]
-    void SunflowerSpawn()
+    void SunflowerSpawn(Vector3 pos)
     {
-        GameObject tempOBJ = Instantiate(sunflowerPrefab, RandomSpawnpoint(), sunflowerPrefab.transform.rotation);
+        GameObject tempOBJ = Instantiate(sunflowerPrefab, pos, sunflowerPrefab.transform.rotation);
         NetworkServer.Spawn(tempOBJ);
     }
 }
