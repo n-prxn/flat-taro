@@ -30,7 +30,7 @@ public class GameManager : NetworkBehaviour
         if (isServer)
         {
             TimeCounter();
-            SunflowerSpawn();
+            // SunflowerSpawnTimeCount();
         }
     }
 
@@ -42,12 +42,12 @@ public class GameManager : NetworkBehaviour
         }
     }
 
-    void SunflowerSpawn()
+    void SunflowerSpawnTimeCount()
     {
         if (spawnTimer >= spawnTimerRate)
         {
             spawnTimer = 0f;
-            Instantiate(sunflowerPrefab, RandomSpawnpoint(), sunflowerPrefab.transform.rotation);
+            SunflowerSpawn();
         }
         else
         {
@@ -62,5 +62,11 @@ public class GameManager : NetworkBehaviour
         rndY = Random.Range(floor.min.y, floor.max.y);
         Vector3 spawnpoint = new Vector3(rndX, rndY, -0.1f);
         return spawnpoint;
+    }
+
+    [ClientRpc]
+    void SunflowerSpawn()
+    {
+        Instantiate(sunflowerPrefab, RandomSpawnpoint(), sunflowerPrefab.transform.rotation);
     }
 }

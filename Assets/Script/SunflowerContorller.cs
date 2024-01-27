@@ -22,8 +22,11 @@ public class SunflowerContorller : NetworkBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Sunflower is Destroy");
-        DestroySunflower();
+        if (isServer)
+        {
+            Debug.Log("Sunflower is Destroy");
+            DestroySunflower();
+        }
     }
 
     private void OnEnable()
