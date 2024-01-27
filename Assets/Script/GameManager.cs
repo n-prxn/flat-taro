@@ -30,7 +30,7 @@ public class GameManager : NetworkBehaviour
         if (isServer)
         {
             TimeCounter();
-            // SunflowerSpawnTimeCount();
+            SunflowerSpawnTimeCount();
         }
     }
 
@@ -64,9 +64,10 @@ public class GameManager : NetworkBehaviour
         return spawnpoint;
     }
 
-    [ClientRpc]
+    [Command(requiresAuthority = false)]
     void SunflowerSpawn()
     {
-        Instantiate(sunflowerPrefab, RandomSpawnpoint(), sunflowerPrefab.transform.rotation);
+        GameObject tempOBJ = Instantiate(sunflowerPrefab, RandomSpawnpoint(), sunflowerPrefab.transform.rotation);
+        NetworkServer.Spawn(tempOBJ);
     }
 }

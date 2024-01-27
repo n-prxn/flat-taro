@@ -16,13 +16,7 @@ public class PlayerEventControll : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (this.isLocalPlayer)
-        {
-            if (playerStatus.sunflower == 10)
-            {
-                Debug.Log("Now My Sunflower is 10");
-            }
-        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
