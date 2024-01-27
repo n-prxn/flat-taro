@@ -6,8 +6,8 @@ using UnityEngine;
 public class InteractContoller : NetworkBehaviour
 {
     [SerializeField][SyncVar] public bool isOnUse;
-    [SerializeField] GameObject fButton;
-    [SerializeField] GameObject isUseButton;
+    // [SerializeField] GameObject fButton;
+    // [SerializeField] GameObject isUseButton;
 
     // Start is called before the first frame update
     void Start()
