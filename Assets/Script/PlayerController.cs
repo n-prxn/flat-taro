@@ -85,7 +85,7 @@ public class PlayerController : NetworkBehaviour
     [Client]
     void Move()
     {
-        rb.velocity = new Vector2(moveDirection.x * moveSpeed * (isSprint ? 1.5f : 1f), moveDirection.y * moveSpeed * (isSprint ? 1.5f : 1f));
+        rb.velocity = new Vector2(moveDirection.x * moveSpeed * (isSprint ? 2f : 1f), moveDirection.y * moveSpeed * (isSprint ? 2 : 1f));
         Flip(moveDirection.x);
     }
     [Client]

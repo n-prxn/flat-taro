@@ -136,7 +136,7 @@ public class PlayerStatus : MonoBehaviour
             if (pulse > 600)
                 StartSetDead();
 
-            if(urge <= 0)
+            if (urge <= 0)
                 StartSetDead();
         }
     }
@@ -148,12 +148,31 @@ public class PlayerStatus : MonoBehaviour
 
     IEnumerator SetDead()
     {
-        isDead = true;
-        gameObject.GetComponent<BoxCollider2D>().enabled = false;
-        GameManager.instance.canPlayerMove = false;
+        Die();
         yield return new WaitForSeconds(deadTime);
+        Respawn();
+    }
+
+    public void Die()
+    {
+        gameObject.GetComponent<PlayerController>().PlayerAnimator.SetBool("isDead", true);
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        isDead = true;
+    }
+
+    public void Respawn()
+    {
+        pulse = 300;
+        urge = 100;
+        sunflower = 0;
+        heldItem = null;
+        itemBuffState = ItemBuffState.none;
+
+        gameObject.GetComponent<PlayerController>().PlayerAnimator.SetBool("isDead", false);
+        gameObject.GetComponent<PlayerController>().PlayerAnimator.Play("Idle");
         gameObject.GetComponent<BoxCollider2D>().enabled = true;
-        GameManager.instance.canPlayerMove = true;
+        gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         isDead = false;
     }
 
