@@ -15,7 +15,6 @@ public enum ItemBuffState
 public class PlayerStatus : NetworkBehaviour
 {
     [SerializeField] private PlayerController playerController;
-    public string playerName = "";
     public int pulse = 300;
     public int urge = 100;
     public int sunflower = 0;
@@ -47,6 +46,7 @@ public class PlayerStatus : NetworkBehaviour
     }
 
     // Update is called once per frame
+    [ClientCallback]
     void Update()
     {
         if (GameManager.instance.canPlayerMove)
@@ -150,7 +150,6 @@ public class PlayerStatus : NetworkBehaviour
         }
     }
 
-    [Client]
     public void StartSetDead()
     {
         StartCoroutine("SetDead");
