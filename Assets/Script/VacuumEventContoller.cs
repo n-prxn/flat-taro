@@ -36,8 +36,7 @@ public class VacuumEventContoller : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!hasTarget)
-            transform.position += (vectorX * Time.deltaTime) * moveSpeed;
+        transform.position += (vectorX * Time.deltaTime) * moveSpeed;
         if (!(-90 < transform.position.x && transform.position.x < 90))
         {
             NetworkServer.Destroy(this.gameObject);
@@ -50,8 +49,16 @@ public class VacuumEventContoller : NetworkBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<PlayerController>().CanPlayerMove = false;
             SetTarget(other.gameObject);
+        }
+    }
+
+    [Client]
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            ResetTarget();
         }
     }
 
