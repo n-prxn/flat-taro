@@ -10,7 +10,7 @@ using UnityEngine.EventSystems;
 public class NetworkManagerLobby : NetworkManager
 {
     [SerializeField] private int minPlayers = 2;
-    [Scene] [SerializeField] private string menuScene;
+    [Scene][SerializeField] private string menuScene;
 
     [Header("Room")]
     [SerializeField] private NetworkRoomPlayerLobby roomPlayerPrefab;
@@ -28,54 +28,66 @@ public class NetworkManagerLobby : NetworkManager
     public static event Action OnServerStopped;
 
 
-    public List<NetworkRoomPlayerLobby> RoomPlayers {get;} = new List<NetworkRoomPlayerLobby>();
-    public List<NetworkGamePlayerLobby> GamePlayers {get;} = new List<NetworkGamePlayerLobby>();
+    public List<NetworkRoomPlayerLobby> RoomPlayers { get; } = new List<NetworkRoomPlayerLobby>();
+    public List<NetworkGamePlayerLobby> GamePlayers { get; } = new List<NetworkGamePlayerLobby>();
 
-    public override void OnStartServer(){
+    public override void OnStartServer()
+    {
         spawnPrefabs = Resources.LoadAll<GameObject>("SpawnablePrefabs").ToList();
     }
 
-    public override void OnStartClient(){
+    public override void OnStartClient()
+    {
         var spawnablePrefabs = Resources.LoadAll<GameObject>("SpawnablePrefabs");
-        foreach(var prefab in spawnablePrefabs){
+        foreach (var prefab in spawnablePrefabs)
+        {
             NetworkClient.RegisterPrefab(prefab);
         }
     }
 
-    public override void OnClientConnect(){
+    public override void OnClientConnect()
+    {
         base.OnClientConnect();
         OnClientConnected?.Invoke();
     }
 
-    public override void OnClientDisconnect(){
+    public override void OnClientDisconnect()
+    {
         base.OnClientDisconnect();
         OnClientDisconnected?.Invoke();
     }
 
-    public override void OnServerConnect(NetworkConnectionToClient conn){
+    public override void OnServerConnect(NetworkConnectionToClient conn)
+    {
         base.OnServerConnect(conn);
-        if(numPlayers >= maxConnections){
+        if (numPlayers >= maxConnections)
+        {
             conn.Disconnect();
             return;
         }
 
-        if(SceneManager.GetActiveScene().name != "Main Menu"){
+        if (SceneManager.GetActiveScene().name != "Main Menu")
+        {
             conn.Disconnect();
             return;
         }
     }
 
-    public override void OnServerAddPlayer(NetworkConnectionToClient conn){
-        if(SceneManager.GetActiveScene().name == "Main Menu"){
+    public override void OnServerAddPlayer(NetworkConnectionToClient conn)
+    {
+        if (SceneManager.GetActiveScene().name == "Main Menu")
+        {
             bool isLeader = RoomPlayers.Count == 0;
             NetworkRoomPlayerLobby roomPlayerInstance = Instantiate(roomPlayerPrefab);
             roomPlayerInstance.IsLeader = isLeader;
-            NetworkServer.AddPlayerForConnection(conn,roomPlayerInstance.gameObject);
+            NetworkServer.AddPlayerForConnection(conn, roomPlayerInstance.gameObject);
         }
     }
 
-    public override void OnServerDisconnect(NetworkConnectionToClient conn){
-        if(conn.identity != null){
+    public override void OnServerDisconnect(NetworkConnectionToClient conn)
+    {
+        if (conn.identity != null)
+        {
             var player = conn.identity.GetComponent<NetworkRoomPlayerLobby>();
             RoomPlayers.Remove(player);
             NotifyPlayersOfReadyState();
@@ -84,44 +96,63 @@ public class NetworkManagerLobby : NetworkManager
         base.OnServerDisconnect(conn);
     }
 
-    public override void OnStopServer(){
+    public override void OnStopServer()
+    {
         OnServerStopped?.Invoke();
 
         RoomPlayers.Clear();
         GamePlayers.Clear();
     }
 
-    public void NotifyPlayersOfReadyState(){
-        foreach(var player in RoomPlayers){
+    public void NotifyPlayersOfReadyState()
+    {
+        foreach (var player in RoomPlayers)
+        {
             player.HandleReadyToStart(IsReadyToStart());
         }
     }
 
-    private bool IsReadyToStart(){
-        if(numPlayers < minPlayers)
+    private bool IsReadyToStart()
+    {
+        if (numPlayers < minPlayers)
             return false;
-        
-        foreach(var player in RoomPlayers){
-            if(!player.IsReady)
+
+        foreach (var player in RoomPlayers)
+        {
+            if (!player.IsReady)
                 return false;
         }
 
         return true;
     }
 
-    public void StartGame(){
-        if(SceneManager.GetActiveScene().name == "Main Menu"){
-            if(!IsReadyToStart())
+    public void StartGame()
+    {
+        if (SceneManager.GetActiveScene().name == "Main Menu")
+        {
+            if (!IsReadyToStart())
                 return;
 
-            ServerChangeScene("Gameplay");
+            int num = UnityEngine.Random.Range(0, 2);
+            if (num % 2 == 0)
+            {
+                ServerChangeScene("Gameplay");
+            }
+            else
+            {
+                ServerChangeScene("Gameplay 2");
+            }
+
         }
     }
 
-    public override void ServerChangeScene(string newSceneName){
+    public override void ServerChangeScene(string newSceneName)
+    {
         //from Menu to Game
-        if(SceneManager.GetActiveScene().name == "Main Menu" && newSceneName == "Gameplay"){
-            for(int i = RoomPlayers.Count - 1; i >= 0 ; i--){
+        if (SceneManager.GetActiveScene().name == "Main Menu" && newSceneName.StartsWith("Gameplay"))
+        {
+            for (int i = RoomPlayers.Count - 1; i >= 0; i--)
+            {
                 var conn = RoomPlayers[i].connectionToClient;
                 var gamePlayerInstance = Instantiate(gamePlayerPrefab);
                 gamePlayerInstance.SetDisplayName(RoomPlayers[i].DisplayName);
@@ -135,17 +166,20 @@ public class NetworkManagerLobby : NetworkManager
         base.ServerChangeScene(newSceneName);
     }
 
-    public override void OnServerSceneChanged(string sceneName){
-        if(sceneName == "Gameplay"){
+    public override void OnServerSceneChanged(string sceneName)
+    {
+        if (sceneName.StartsWith("Gameplay"))
+        {
             GameObject playerSpawnSystemInstance = Instantiate(playerSpawnSystem);
             NetworkServer.Spawn(playerSpawnSystemInstance);
-        
+
             GameObject roundSystemInstance = Instantiate(roundSystem);
             NetworkServer.Spawn(roundSystemInstance);
         }
     }
 
-    public override void OnServerReady(NetworkConnectionToClient conn){
+    public override void OnServerReady(NetworkConnectionToClient conn)
+    {
         base.OnServerReady(conn);
         OnServerReadied?.Invoke(conn);
     }
