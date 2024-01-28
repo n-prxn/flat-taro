@@ -50,7 +50,6 @@ public class VacuumEventContoller : NetworkBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<PlayerController>().CanPlayerMove = false;
             SetTarget(other.gameObject);
         }
     }
@@ -63,8 +62,6 @@ public class VacuumEventContoller : NetworkBehaviour
             Vector2 targetDirection = (transform.position - targetPos).normalized;
             rb.velocity = new Vector2(targetDirection.x, targetDirection.y) * magnetSpeed;
         }
-        if (rb != null)
-            rb.velocity = Vector2.zero;
     }
 
     void SetTarget(GameObject obj)
@@ -76,8 +73,7 @@ public class VacuumEventContoller : NetworkBehaviour
 
     public void ResetTarget()
     {
-        if (rb != null)
-            rb.velocity = Vector2.zero;
+        rb.velocity = Vector2.zero;
         hasTarget = false;
     }
 

@@ -69,7 +69,7 @@ public class PlayerStatus : NetworkBehaviour
 
                 CheckRest();
 
-                if (!isInteractUrge)
+                if (!isInteractUrge && !isDead)
                     CheckUrge();
 
                 Addsunflower();
@@ -171,7 +171,10 @@ public class PlayerStatus : NetworkBehaviour
     public void Respawn()
     {
         pulse = 300;
-        urge = 100;
+        if (urge <= 0)
+        {
+            urge = 30;
+        }
         sunflower = 0;
         heldItem = null;
         itemBuffState = ItemBuffState.none;
