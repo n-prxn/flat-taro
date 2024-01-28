@@ -166,13 +166,13 @@ public class PlayerStatus : NetworkBehaviour
     [Command]
     private void CmdAddDeathCount()
     {
-        deathCount++;
         RPCSetDeathCount(playerController.index, deathCount);
     }
 
     [ClientRpc]
     private void RPCSetDeathCount(int index, int deathCount)
     {
+        deathCount++;
         playerController.Room.GamePlayers[index].SetDeathCount(deathCount);
     }
 
