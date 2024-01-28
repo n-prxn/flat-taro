@@ -191,7 +191,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  timeCount: 100
+  timeCount: 180
   day: 1
   canPlayerMove: 0
   isGameFinished: 0

@@ -39,7 +39,7 @@ public class PlayerNameInput : MonoBehaviour
 
     public void SetPlayerName(string name)
     {
-        continueButton.interactable = !string.IsNullOrEmpty(name);
+        // continueButton.interactable = !string.IsNullOrEmpty(name);
     }
 
     public void SavePlayerName()
