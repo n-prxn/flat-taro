@@ -191,9 +191,10 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  timeCount: 180
+  timeCount: 20
   day: 1
   canPlayerMove: 0
+  isGameFinished: 0
   floor:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}

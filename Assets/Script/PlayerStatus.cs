@@ -157,16 +157,23 @@ public class PlayerStatus : NetworkBehaviour
 
     IEnumerator SetDead()
     {
-        AddDeathCount();
+        CmdAddDeathCount();
         Die();
         yield return new WaitForSeconds(deadTime);
         Respawn();
     }
 
     [Command]
-    private void AddDeathCount()
+    private void CmdAddDeathCount()
     {
         deathCount++;
+        RPCSetDeathCount(playerController.index, deathCount);
+    }
+
+    [ClientRpc]
+    private void RPCSetDeathCount(int index, int deathCount)
+    {
+        playerController.Room.GamePlayers[index].SetDeathCount(deathCount);
     }
 
     public void Die()

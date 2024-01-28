@@ -6,10 +6,13 @@ using UnityEngine.UI;
 using Cinemachine;
 using Unity.VisualScripting;
 using System;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : NetworkBehaviour
 {
     [SerializeField]
+    public int index;
+    public string playerName = "";
     public float moveSpeed = 5f;
     public Rigidbody2D rb;
     public Transform hamsterTF;
@@ -36,10 +39,16 @@ public class PlayerController : NetworkBehaviour
         enabled = true;
     }
 
+    [ClientCallback]
+    private void Awake()
+    {
+        SearchForThisPlayer();
+    }
+
     // Update is called once per frame
     // [ClientCallback]
     private NetworkManagerLobby room;
-    private NetworkManagerLobby Room
+    public NetworkManagerLobby Room
     {
         get
         {
@@ -63,24 +72,39 @@ public class PlayerController : NetworkBehaviour
             //     // Debug.Log(player.GetDisplayName());
             //     Debug.Log(player.displayName);
             // }
-            var players = FindObjectsOfType<PlayerController>();
-            int count = 0;
-            int count2 = 0;
-            foreach (var i in players)
-            {
-                if (i.gameObject == this.gameObject)
-                {
-                    Debug.Log("This gameobj is index " + count);
-                }
-                count++;
-            }
-            var networkPlayer = FindObjectsOfType<NetworkGamePlayerLobby>();
-            foreach (var i in networkPlayer)
-            {
-                Debug.Log(i.GetComponent<NetworkGamePlayerLobby>().displayName + " is index " + count2);
-                count2++;
-            }
+
         }
+    }
+
+    private void SearchForThisPlayer()
+    {
+        var players = FindObjectsOfType<PlayerController>();
+        int gameobjIndex = 0;
+
+        foreach (var i in players)
+        {
+            if (i.gameObject == this.gameObject)
+            {
+                //Debug.Log("This gameobj is index " + gameobjIndex);
+                break;
+            }
+            gameobjIndex++;
+        }
+
+        int networkIndex = 0;
+        var networkPlayers = FindObjectsOfType<NetworkGamePlayerLobby>();
+        foreach (var i in networkPlayers)
+        {
+            //Debug.Log(i.GetComponent<NetworkGamePlayerLobby>().displayName + " is index " + networkIndex);
+            if (gameobjIndex == networkIndex)
+            {
+                playerName = i.GetComponent<NetworkGamePlayerLobby>().displayName;
+                index = networkIndex;
+                break;
+            }
+            networkIndex++;
+        }
+        Debug.Log(playerName);
     }
 
     [ClientCallback]
@@ -144,6 +168,18 @@ public class PlayerController : NetworkBehaviour
             // hamsterTF.gameObject.GetComponent<SpriteRenderer>().flipX = flip;
             faceDirection = 1;
         }
+    }
+
+    public void ClientDisconnect()
+    {
+        Room.StopClient();
+        SceneManager.LoadScene("Main Menu");
+    }
+
+    public void HostDisconnect()
+    {
+        Room.StopHost();
+        SceneManager.LoadScene("Main Menu");
     }
 
     [Command]

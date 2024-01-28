@@ -8,7 +8,7 @@ public class NetworkGamePlayerLobby : NetworkBehaviour
     [SyncVar] [SerializeField]
     public string displayName = "Loading...";
 
-    [SyncVar]
+    [SyncVar] [SerializeField]
     private int deathCount = 0;
 
     private NetworkManagerLobby room;
