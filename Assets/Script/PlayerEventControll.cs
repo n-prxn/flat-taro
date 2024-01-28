@@ -35,6 +35,7 @@ public class PlayerEventControll : NetworkBehaviour
         {
             Debug.Log(this.name + " is in DeadEvent");
             this.GetComponent<PlayerStatus>().StartSetDead();
+            other.gameObject.SetActive(false);
         }
 
     }
