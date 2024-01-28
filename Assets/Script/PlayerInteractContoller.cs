@@ -28,14 +28,14 @@ public class PlayerInteractContoller : NetworkBehaviour
             if (Input.GetKeyDown(KeyCode.F) && !tempInteractOBJ.GetComponent<InteractContoller>().isOnUse)
             {
                 tempInteractOBJ.GetComponent<InteractContoller>().IsOnUseFilp();
+                gameObject.GetComponent<PlayerController>().CanPlayerMove = false;
+                gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
                 switch (tempInteractOBJ.GetComponent<InteractContoller>().interactType)
                 {
                     case InteractType.Shop:
                         shopPanel.SetActive(true);
-                        gameObject.GetComponent<PlayerController>().CanPlayerMove = false;
                         break;
                     case InteractType.Urge:
-                        gameObject.GetComponent<PlayerController>().CanPlayerMove = false;
                         // gameObject.GetComponent<PlayerController>().PlayerAnimator.SetBool("isInteract", true);
                         SetAniCMD("Interact");
                         gameObject.GetComponent<PlayerStatus>().isInteractUrge = true;
@@ -122,17 +122,23 @@ public class PlayerInteractContoller : NetworkBehaviour
             {
                 count++;
                 gameObject.GetComponent<PlayerStatus>().urge += 6;
-                if(gameObject.GetComponent<PlayerStatus>().urge >= 100)
+                if (gameObject.GetComponent<PlayerStatus>().urge >= 100)
                     gameObject.GetComponent<PlayerStatus>().urge = 100;
             }
             yield return null;
         }
 
         gameObject.GetComponent<PlayerController>().CanPlayerMove = true;
+        gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         // gameObject.GetComponent<PlayerController>().PlayerAnimator.SetBool("isInteract", false);
         SetAniCMD("Idle");
         gameObject.GetComponent<PlayerStatus>().isInteractUrge = false;
         tempInteractOBJ.GetComponent<InteractContoller>().IsOnUseFilp(false);
+    }
+
+    public void SetBodyTypeToDynamic()
+    {
+        gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
     }
 
     [Command]
