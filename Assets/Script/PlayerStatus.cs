@@ -157,8 +157,9 @@ public class PlayerStatus : NetworkBehaviour
 
     IEnumerator SetDead()
     {
-        CmdAddDeathCount();
+        deathCount++;
         Die();
+        CmdAddDeathCount();
         yield return new WaitForSeconds(deadTime);
         Respawn();
     }
@@ -166,7 +167,7 @@ public class PlayerStatus : NetworkBehaviour
     [Command]
     private void CmdAddDeathCount()
     {
-        deathCount++;
+        // deathCount++;
         RPCSetDeathCount(playerController.index, deathCount);
     }
 
