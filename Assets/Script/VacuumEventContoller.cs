@@ -63,6 +63,8 @@ public class VacuumEventContoller : NetworkBehaviour
             Vector2 targetDirection = (transform.position - targetPos).normalized;
             rb.velocity = new Vector2(targetDirection.x, targetDirection.y) * magnetSpeed;
         }
+        if (rb != null)
+            rb.velocity = Vector2.zero;
     }
 
     void SetTarget(GameObject obj)
@@ -74,7 +76,8 @@ public class VacuumEventContoller : NetworkBehaviour
 
     public void ResetTarget()
     {
-        rb.velocity = Vector2.zero;
+        if (rb != null)
+            rb.velocity = Vector2.zero;
         hasTarget = false;
     }
 
