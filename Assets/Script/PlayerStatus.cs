@@ -150,6 +150,7 @@ public class PlayerStatus : NetworkBehaviour
         }
     }
 
+    [Client]
     public void StartSetDead()
     {
         StartCoroutine("SetDead");
@@ -176,7 +177,8 @@ public class PlayerStatus : NetworkBehaviour
         var networkPlayers = FindObjectsOfType<NetworkGamePlayerLobby>();
         foreach (var i in networkPlayers)
         {
-            if(playerController.playerName == i.GetComponent<NetworkGamePlayerLobby>().displayName){
+            if (playerController.playerName == i.GetComponent<NetworkGamePlayerLobby>().displayName)
+            {
                 i.GetComponent<NetworkGamePlayerLobby>().SetDeathCount(deathCount);
             }
         }
