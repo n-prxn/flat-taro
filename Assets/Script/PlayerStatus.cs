@@ -15,9 +15,11 @@ public enum ItemBuffState
 public class PlayerStatus : NetworkBehaviour
 {
     [SerializeField] private PlayerController playerController;
+    public string playerName = "";
     public int pulse = 300;
     public int urge = 100;
     public int sunflower = 0;
+    [SyncVar]
     public int deathCount = 0;
     public ItemSO heldItem;
 
@@ -155,10 +157,16 @@ public class PlayerStatus : NetworkBehaviour
 
     IEnumerator SetDead()
     {
-        deathCount++;
+        AddDeathCount();
         Die();
         yield return new WaitForSeconds(deadTime);
         Respawn();
+    }
+
+    [Command]
+    private void AddDeathCount()
+    {
+        deathCount++;
     }
 
     public void Die()
@@ -199,7 +207,7 @@ public class PlayerStatus : NetworkBehaviour
                     break;
                 case 2:
                     urge += 50;
-                    if(urge >= 100)
+                    if (urge >= 100)
                         urge = 100;
                     break;
                 case 3:

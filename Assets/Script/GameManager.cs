@@ -10,6 +10,7 @@ public class GameManager : NetworkBehaviour
     [SyncVar] public float timeCount = 180;
     [SyncVar] public int day = 1;
     [SyncVar] public bool canPlayerMove;
+    [SyncVar] public bool isGameFinished = false;
 
     [Header("=====Random area=====")]
     [SerializeField] Bounds floor;
@@ -50,9 +51,12 @@ public class GameManager : NetworkBehaviour
     {
         if (isServer)
         {
-            TimeCounter();
-            if (sunflowerCount < MaxSunflower)
-                SunflowerSpawnTimeCount();
+            if (!isGameFinished)
+            {
+                TimeCounter();
+                if (sunflowerCount < MaxSunflower)
+                    SunflowerSpawnTimeCount();
+            }
             // BookSpawnTimeCount();
             // if (Input.GetKeyDown(KeyCode.M))
             // {
@@ -93,6 +97,11 @@ public class GameManager : NetworkBehaviour
         if (timeCount > 0 && canPlayerMove)
         {
             timeCount -= Time.deltaTime;
+        }
+
+        if (timeCount <= 0)
+        {
+            isGameFinished = true;
         }
     }
 

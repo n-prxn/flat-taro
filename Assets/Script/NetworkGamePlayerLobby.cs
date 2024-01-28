@@ -8,6 +8,9 @@ public class NetworkGamePlayerLobby : NetworkBehaviour
     [SyncVar]
     private string displayName = "Loading...";
 
+    [SyncVar]
+    private int deathCount = 0;
+
     private NetworkManagerLobby room;
     private NetworkManagerLobby Room
     {
@@ -33,5 +36,18 @@ public class NetworkGamePlayerLobby : NetworkBehaviour
     [Server]
     public void SetDisplayName(string displayName){
         this.displayName = displayName;
+    }
+
+    [Server]
+    public void SetDeathCount(int deathCount){
+        this.deathCount = deathCount;
+    }
+    
+    public string GetDisplayName(){
+        return this.displayName;
+    }
+
+    public int GetDeathCount(){
+        return deathCount;
     }
 }

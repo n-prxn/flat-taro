@@ -44,6 +44,13 @@ public class PlayerController : NetworkBehaviour
     {
         if (GameManager.instance.canPlayerMove && canPlayerMove)
             ProcessInput();
+
+        if(Input.GetKeyDown(KeyCode.X)){
+            var gamePlayers = FindObjectsOfType<NetworkGamePlayerLobby>();
+            foreach(var player in gamePlayers){
+                Debug.Log(player.GetDisplayName());
+            }
+        }
     }
 
     [ClientCallback]
