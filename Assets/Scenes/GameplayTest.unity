@@ -131,6 +131,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2252653425696249969, guid: 67fc93fcf024b944ab0b77bcf09a3957, type: 3}
+      propertyPath: interactType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5339325319883134201, guid: 67fc93fcf024b944ab0b77bcf09a3957, type: 3}
       propertyPath: m_Name
       value: InteractShopPrefab
@@ -276,6 +280,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2252653425696249969, guid: 41e4011cf5f541e4a879d6979b88b899, type: 3}
+      propertyPath: interactType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5339325319883134201, guid: 41e4011cf5f541e4a879d6979b88b899, type: 3}
       propertyPath: m_Name
       value: InteractFoodPrefab

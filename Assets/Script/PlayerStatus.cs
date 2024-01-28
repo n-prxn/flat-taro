@@ -29,7 +29,7 @@ public class PlayerStatus : MonoBehaviour
     private float energyBoostBuffCounter = 45;
     private void Awake()
     {
-        isInteractUrge = true;
+        isInteractUrge = false;
     }
     // Start is called before the first frame update
     void Start()
@@ -62,7 +62,7 @@ public class PlayerStatus : MonoBehaviour
 
                 CheckRest();
 
-                if (isInteractUrge)
+                if (!isInteractUrge)
                     CheckUrge();
 
                 Addsunflower();
