@@ -54,14 +54,14 @@ public class GameManager : NetworkBehaviour
             if (sunflowerCount < MaxSunflower)
                 SunflowerSpawnTimeCount();
             // BookSpawnTimeCount();
-            if (Input.GetKeyDown(KeyCode.M))
-            {
-                BookSpawnValueTest();
-            }
-            if (Input.GetKeyDown(KeyCode.N))
-            {
-                VacuumSpawnValueTest();
-            }
+            // if (Input.GetKeyDown(KeyCode.M))
+            // {
+            //     BookSpawnValueTest();
+            // }
+            // if (Input.GetKeyDown(KeyCode.N))
+            // {
+            //     VacuumSpawnValueTest();
+            // }
         }
     }
     void RandomEvent()
