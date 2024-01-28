@@ -4418,7 +4418,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   playerController: {fileID: 2985583717845918067}
-  playerName: 
   pulse: 300
   urge: 100
   sunflower: 0
