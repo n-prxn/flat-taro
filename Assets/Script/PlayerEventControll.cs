@@ -21,7 +21,6 @@ public class PlayerEventControll : NetworkBehaviour
     [Client]
     private void OnTriggerEnter2D(Collider2D other)
     {
-
         if (other.CompareTag("SunflowerSeed"))
         {
             //Debug.Log("Is on Sunflower");
@@ -31,12 +30,15 @@ public class PlayerEventControll : NetworkBehaviour
                 DestroySunflower(other.gameObject);
             }
         }
+
+
         if (other.CompareTag("DeadEvent"))
         {
             Debug.Log(this.name + " is in DeadEvent");
             this.GetComponent<PlayerStatus>().StartSetDead();
             other.gameObject.SetActive(false);
         }
+
 
     }
 
