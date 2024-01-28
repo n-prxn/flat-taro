@@ -15,6 +15,9 @@ public class GameManager : NetworkBehaviour
     [SerializeField] Bounds floor;
     [SerializeField] Renderer floorOBJ;
 
+    [Header("=====Spawner Setting=====")]
+    [SerializeField] float spawnEventTimeRate = 1f;
+
     [Header("=====Sunflower Spawner=====")]
     [SyncVar] public float sunflowerCount = 0;
     public float MaxSunflower;
@@ -38,6 +41,8 @@ public class GameManager : NetworkBehaviour
     {
         instance = this;
         floor = floorOBJ.bounds;
+        if (isServer)
+            InvokeRepeating("RandomEvent", 0f, spawnEventTimeRate);
     }
 
     // Update is called once per frame
@@ -56,6 +61,20 @@ public class GameManager : NetworkBehaviour
             if (Input.GetKeyDown(KeyCode.N))
             {
                 VacuumSpawnValueTest();
+            }
+        }
+    }
+    void RandomEvent()
+    {
+        if (canPlayerMove)
+        {
+            if (Random.Range(0, 10) > 6)
+            {
+                VacuumSpawnValueTest();
+            }
+            else
+            {
+                BookSpawnValueTest();
             }
         }
     }

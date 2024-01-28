@@ -50,7 +50,7 @@ public class VacuumEventContoller : NetworkBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.instance.canPlayerMove = false;
+            other.GetComponent<PlayerController>().CanPlayerMove = false;
             SetTarget(other.gameObject);
         }
     }
