@@ -18,6 +18,7 @@ public class PlayerStatus : NetworkBehaviour
     public int pulse = 300;
     public int urge = 100;
     public int sunflower = 0;
+    public int deathCount = 0;
     public ItemSO heldItem;
 
     [SerializeField] bool isDead;
@@ -31,6 +32,11 @@ public class PlayerStatus : NetworkBehaviour
     private void Awake()
     {
         isInteractUrge = false;
+    }
+
+    public override void OnStartAuthority()
+    {
+        deathCount = 0;
     }
     // Start is called before the first frame update
     void Start()
@@ -149,6 +155,7 @@ public class PlayerStatus : NetworkBehaviour
 
     IEnumerator SetDead()
     {
+        deathCount++;
         Die();
         yield return new WaitForSeconds(deadTime);
         Respawn();
@@ -192,6 +199,8 @@ public class PlayerStatus : NetworkBehaviour
                     break;
                 case 2:
                     urge += 50;
+                    if(urge >= 100)
+                        urge = 100;
                     break;
                 case 3:
                     break;

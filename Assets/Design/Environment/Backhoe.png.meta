@@ -121,18 +121,40 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Backhoe_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 222
+        width: 2360
+        height: 2138
+      alignment: 9
+      pivot: {x: 0.4351695, y: 0.313377}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcbf45d168295a24496fe930f9e18e1e
+      internalID: 1265109298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 53015e7cc8d135044ae5702189aef803
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Backhoe_0: 1265109298
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -122,6 +122,8 @@ public class PlayerInteractContoller : NetworkBehaviour
             {
                 count++;
                 gameObject.GetComponent<PlayerStatus>().urge += 6;
+                if(gameObject.GetComponent<PlayerStatus>().urge >= 100)
+                    gameObject.GetComponent<PlayerStatus>().urge = 100;
             }
             yield return null;
         }
