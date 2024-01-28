@@ -5,6 +5,7 @@ using Mirror;
 using UnityEngine.UI;
 using Cinemachine;
 using Unity.VisualScripting;
+using System;
 
 public class PlayerController : NetworkBehaviour
 {
@@ -24,9 +25,10 @@ public class PlayerController : NetworkBehaviour
 
     [SerializeField] GameObject GUIobj;
     [SerializeField] Animator playerAnimator;
-    public Animator PlayerAnimator{
-        get{return playerAnimator;}
-        set{playerAnimator = value;}
+    public Animator PlayerAnimator
+    {
+        get { return playerAnimator; }
+        set { playerAnimator = value; }
     }
 
     public override void OnStartAuthority()
@@ -54,7 +56,7 @@ public class PlayerController : NetworkBehaviour
         }
         else
         {
-            playerAnimator.SetBool("isIdle", true);
+            SetAniBoolCMD("isIdle", true);
         }
         //Physics Calculations
     }
@@ -78,8 +80,8 @@ public class PlayerController : NetworkBehaviour
         else
             isIdle = false;
 
-        playerAnimator.SetBool("isIdle", isIdle);
-        playerAnimator.SetBool("isSprint", isSprint);
+        SetAniBoolCMD("isIdle", isIdle);
+        SetAniBoolCMD("isSprint", isSprint);
     }
 
     [Client]
@@ -122,5 +124,16 @@ public class PlayerController : NetworkBehaviour
     void Flip()
     {
         hamsterTF.gameObject.GetComponent<SpriteRenderer>().flipX = flip;
+    }
+
+    [Command]
+    void SetAniBoolCMD(String name, bool value)
+    {
+        SetAniBool(name, value);
+    }
+    [ClientRpc]
+    void SetAniBool(String name, bool value)
+    {
+        playerAnimator.SetBool(name, value);
     }
 }

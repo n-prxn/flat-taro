@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -36,7 +37,7 @@ public class PlayerInteractContoller : NetworkBehaviour
                     case InteractType.Urge:
                         gameObject.GetComponent<PlayerController>().CanPlayerMove = false;
                         // gameObject.GetComponent<PlayerController>().PlayerAnimator.SetBool("isInteract", true);
-                        gameObject.GetComponent<PlayerController>().PlayerAnimator.Play("Interact");
+                        SetAniCMD("Interact");
                         gameObject.GetComponent<PlayerStatus>().isInteractUrge = true;
                         StartAddUrge();
                         break;
@@ -88,7 +89,6 @@ public class PlayerInteractContoller : NetworkBehaviour
             if (tempInteractOBJ != null)
                 other.GetComponent<InteractContoller>().IsOnUseFilp(false);
             tempInteractOBJ = null;
-            gameObject.GetComponent<PlayerController>().PlayerAnimator.SetBool("isInteract", false);
             SetActiveInteract(isUseButton, false);
             SetActiveInteract(fButton, false);
         }
@@ -128,8 +128,19 @@ public class PlayerInteractContoller : NetworkBehaviour
 
         gameObject.GetComponent<PlayerController>().CanPlayerMove = true;
         // gameObject.GetComponent<PlayerController>().PlayerAnimator.SetBool("isInteract", false);
-        gameObject.GetComponent<PlayerController>().PlayerAnimator.Play("Idle");
+        SetAniCMD("Idle");
         gameObject.GetComponent<PlayerStatus>().isInteractUrge = false;
         tempInteractOBJ.GetComponent<InteractContoller>().IsOnUseFilp(false);
+    }
+
+    [Command]
+    void SetAniCMD(String name)
+    {
+        SetAni(name);
+    }
+    [ClientRpc]
+    void SetAni(String name)
+    {
+        gameObject.GetComponent<PlayerController>().PlayerAnimator.Play(name);
     }
 }

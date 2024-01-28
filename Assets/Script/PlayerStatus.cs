@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Mirror;
@@ -11,7 +12,7 @@ public enum ItemBuffState
     none
 }
 
-public class PlayerStatus : MonoBehaviour
+public class PlayerStatus : NetworkBehaviour
 {
     [SerializeField] private PlayerController playerController;
     public int pulse = 300;
@@ -155,12 +156,11 @@ public class PlayerStatus : MonoBehaviour
 
     public void Die()
     {
-        gameObject.GetComponent<PlayerController>().PlayerAnimator.SetBool("isDead", true);
+        SetAniCMD("Dead");
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
         gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         isDead = true;
     }
-
     public void Respawn()
     {
         pulse = 300;
@@ -169,8 +169,7 @@ public class PlayerStatus : MonoBehaviour
         heldItem = null;
         itemBuffState = ItemBuffState.none;
 
-        gameObject.GetComponent<PlayerController>().PlayerAnimator.SetBool("isDead", false);
-        gameObject.GetComponent<PlayerController>().PlayerAnimator.Play("Idle");
+        SetAniCMD("Idle");
         gameObject.GetComponent<BoxCollider2D>().enabled = true;
         gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         isDead = false;
@@ -202,6 +201,17 @@ public class PlayerStatus : MonoBehaviour
             heldItem = null;
         }
 
+    }
+
+    [Command]
+    void SetAniCMD(String name)
+    {
+        SetAni(name);
+    }
+    [ClientRpc]
+    void SetAni(String name)
+    {
+        gameObject.GetComponent<PlayerController>().PlayerAnimator.Play(name);
     }
 
 }
