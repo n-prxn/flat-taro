@@ -15,6 +15,7 @@ public class PlayerUI : NetworkBehaviour
     [SerializeField] private Image timerArm;
     [SerializeField] private TextMeshProUGUI timeText;
     [SerializeField] private Image itemSlot;
+    [SerializeField] private TextMeshProUGUI deatchCountText;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +31,7 @@ public class PlayerUI : NetworkBehaviour
         UpdateUrge();
         UpdatePulse();
         UpdateHeldItem();
+        UpdateDeathCount();
     }
 
     void UpdateTime(){
@@ -46,6 +48,10 @@ public class PlayerUI : NetworkBehaviour
 
         /*float heartScale = ((float)playerStatus.pulse) / 600f;
         pulseImg.transform.localScale = new Vector3(heartScale,heartScale,heartScale);*/
+    }
+
+    void UpdateDeathCount(){
+        deatchCountText.text = playerStatus.deathCount.ToString();
     }
 
     void UpdateHeldItem(){
