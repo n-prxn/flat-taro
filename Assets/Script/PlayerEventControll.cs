@@ -24,7 +24,7 @@ public class PlayerEventControll : NetworkBehaviour
 
         if (other.CompareTag("SunflowerSeed"))
         {
-            Debug.Log("Is on Sunflower");
+            //Debug.Log("Is on Sunflower");
             if (other.gameObject.GetComponent<SunflowerContorller>().canUse)
             {
                 playerStatus.sunflower++;

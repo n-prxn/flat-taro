@@ -23,7 +23,11 @@ public class PlayerController : NetworkBehaviour
     [SerializeField][SyncVar] bool flip;
 
     [SerializeField] GameObject GUIobj;
-    [SerializeField] Animator animator;
+    [SerializeField] Animator playerAnimator;
+    public Animator PlayerAnimator{
+        get{return playerAnimator;}
+        set{playerAnimator = value;}
+    }
 
     public override void OnStartAuthority()
     {
@@ -50,7 +54,7 @@ public class PlayerController : NetworkBehaviour
         }
         else
         {
-            animator.SetBool("isIdle", true);
+            playerAnimator.SetBool("isIdle", true);
         }
         //Physics Calculations
     }
@@ -74,8 +78,8 @@ public class PlayerController : NetworkBehaviour
         else
             isIdle = false;
 
-        animator.SetBool("isIdle", isIdle);
-        animator.SetBool("isSprint", isSprint);
+        playerAnimator.SetBool("isIdle", isIdle);
+        playerAnimator.SetBool("isSprint", isSprint);
     }
 
     [Client]

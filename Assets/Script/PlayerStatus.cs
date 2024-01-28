@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
 
+public enum ItemBuffState
+{
+    energyBoost,
+    ballProtection,
+    timeBomb,
+    none
+}
+
 public class PlayerStatus : MonoBehaviour
 {
     [SerializeField] private PlayerController playerController;
@@ -12,12 +20,13 @@ public class PlayerStatus : MonoBehaviour
     public ItemSO heldItem;
 
     [SerializeField] bool isDead;
+    [SerializeField] ItemBuffState itemBuffState = ItemBuffState.none;
     [SerializeField] float deadTime;
 
     [SerializeField] public bool isInteractUrge;
 
     private float sprintTimeCounter = 1, restTimeCounter = 3, pulseTimeCounter = 0.5f, urgeTimeCounter = 1;
-
+    private float energyBoostBuffCounter = 45;
     private void Awake()
     {
         isInteractUrge = true;
@@ -33,11 +42,31 @@ public class PlayerStatus : MonoBehaviour
     {
         if (GameManager.instance.canPlayerMove)
         {
-            CheckSprint();
-            CheckRest();
-            if (isInteractUrge)
-                CheckUrge();
-            Addsunflower();
+            if (!isDead)
+            {
+                CheckDead();
+                UseItem();
+
+                if (itemBuffState != ItemBuffState.energyBoost)
+                    CheckSprint();
+                else
+                {
+                    if (energyBoostBuffCounter > 0)
+                        energyBoostBuffCounter -= Time.deltaTime;
+                    else
+                    {
+                        energyBoostBuffCounter = 45;
+                        itemBuffState = ItemBuffState.none;
+                    }
+                }
+
+                CheckRest();
+
+                if (isInteractUrge)
+                    CheckUrge();
+
+                Addsunflower();
+            }
         }
 
     }
@@ -100,6 +129,18 @@ public class PlayerStatus : MonoBehaviour
         }
     }
 
+    void CheckDead()
+    {
+        if (!isDead)
+        {
+            if (pulse > 600)
+                StartSetDead();
+
+            if(urge <= 0)
+                StartSetDead();
+        }
+    }
+
     public void StartSetDead()
     {
         StartCoroutine("SetDead");
@@ -116,21 +157,32 @@ public class PlayerStatus : MonoBehaviour
         isDead = false;
     }
 
-    public void UseItem(ItemSO item)
+    public void UseItem()
     {
-        switch (item.itemID)
+        if (heldItem == null)
+            return;
+
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            case 0:
-                break;
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
+            switch (heldItem.itemID)
+            {
+                case 0:
+                    itemBuffState = ItemBuffState.energyBoost;
+                    break;
+                case 1:
+                    itemBuffState = ItemBuffState.ballProtection;
+                    break;
+                case 2:
+                    urge += 50;
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+            }
+            heldItem = null;
         }
+
     }
 
 }

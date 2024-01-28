@@ -32,12 +32,14 @@ public class PlayerInteractContoller : NetworkBehaviour
                         shopPanel.SetActive(true);
                         break;
                     case InteractType.Urge:
+                        gameObject.GetComponent<PlayerController>().PlayerAnimator.SetBool("isInteract",true);
                         gameObject.GetComponent<PlayerStatus>().isInteractUrge = false;
                         break;
                 }
             }
         }
     }
+
     [Client]
     public void SetActiveInteract(GameObject obj, bool value)
     {
@@ -81,6 +83,7 @@ public class PlayerInteractContoller : NetworkBehaviour
             if (tempInteractOBJ != null)
                 other.GetComponent<InteractContoller>().IsOnUseFilp(false);
             tempInteractOBJ = null;
+            gameObject.GetComponent<PlayerController>().PlayerAnimator.SetBool("isInteract",false);
             SetActiveInteract(isUseButton, false);
             SetActiveInteract(fButton, false);
         }
