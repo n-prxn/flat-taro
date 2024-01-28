@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class NetworkGamePlayerLobby : NetworkBehaviour
 {
-    [SyncVar]
-    private string displayName = "Loading...";
+    [SyncVar] [SerializeField]
+    public string displayName = "Loading...";
 
     [SyncVar]
     private int deathCount = 0;

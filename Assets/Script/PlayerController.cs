@@ -38,6 +38,16 @@ public class PlayerController : NetworkBehaviour
 
     // Update is called once per frame
     // [ClientCallback]
+    private NetworkManagerLobby room;
+    private NetworkManagerLobby Room
+    {
+        get
+        {
+            if (room != null)
+                return room;
+            return room = NetworkManager.singleton as NetworkManagerLobby;
+        }
+    }
 
     [ClientCallback]
     void Update()
@@ -45,10 +55,30 @@ public class PlayerController : NetworkBehaviour
         if (GameManager.instance.canPlayerMove && canPlayerMove)
             ProcessInput();
 
-        if(Input.GetKeyDown(KeyCode.X)){
-            var gamePlayers = FindObjectsOfType<NetworkGamePlayerLobby>();
-            foreach(var player in gamePlayers){
-                Debug.Log(player.GetDisplayName());
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            // var gamePlayers = FindObjectsOfType<NetworkGamePlayerLobby>();
+            // foreach (var player in gamePlayers)
+            // {
+            //     // Debug.Log(player.GetDisplayName());
+            //     Debug.Log(player.displayName);
+            // }
+            var players = FindObjectsOfType<PlayerController>();
+            int count = 0;
+            int count2 = 0;
+            foreach (var i in players)
+            {
+                if (i.gameObject == this.gameObject)
+                {
+                    Debug.Log("This gameobj is index " + count);
+                }
+                count++;
+            }
+            var networkPlayer = FindObjectsOfType<NetworkGamePlayerLobby>();
+            foreach (var i in networkPlayer)
+            {
+                Debug.Log(i.GetComponent<NetworkGamePlayerLobby>().displayName + " is index " + count2);
+                count2++;
             }
         }
     }
