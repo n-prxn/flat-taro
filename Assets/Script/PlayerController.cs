@@ -37,12 +37,13 @@ public class PlayerController : NetworkBehaviour
     public override void OnStartAuthority()
     {
         enabled = true;
+        //SearchForThisPlayer();
     }
 
     [ClientCallback]
     private void Awake()
     {
-        SearchForThisPlayer();
+        // SearchForThisPlayer();
     }
 
     // Update is called once per frame
@@ -85,26 +86,24 @@ public class PlayerController : NetworkBehaviour
         {
             if (i.gameObject == this.gameObject)
             {
-                //Debug.Log("This gameobj is index " + gameobjIndex);
+                Debug.Log(playerName);
                 break;
             }
             gameobjIndex++;
         }
-
         int networkIndex = 0;
         var networkPlayers = FindObjectsOfType<NetworkGamePlayerLobby>();
-        foreach (var i in networkPlayers)
+        foreach (var j in networkPlayers)
         {
             //Debug.Log(i.GetComponent<NetworkGamePlayerLobby>().displayName + " is index " + networkIndex);
             if (gameobjIndex == networkIndex)
             {
-                playerName = i.GetComponent<NetworkGamePlayerLobby>().displayName;
+                playerName = j.GetComponent<NetworkGamePlayerLobby>().displayName;
                 index = networkIndex;
                 break;
             }
             networkIndex++;
         }
-        Debug.Log(playerName);
     }
 
     [ClientCallback]

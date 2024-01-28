@@ -43,7 +43,32 @@ public class GameManager : NetworkBehaviour
         instance = this;
         floor = floorOBJ.bounds;
         if (isServer)
+        {
             InvokeRepeating("RandomEvent", 0f, spawnEventTimeRate);
+        }
+    }
+
+    void SetNameUpdate()
+    {
+        var players = FindObjectsOfType<PlayerController>();
+        var networkPlayers = FindObjectsOfType<NetworkGamePlayerLobby>();
+
+        foreach (var i in players)
+        {
+            foreach (var j in networkPlayers)
+            {
+                if (i.gameObject.GetComponent<PlayerController>().playerName.ToString() == j.gameObject.GetComponent<NetworkGamePlayerLobby>().displayName.ToString())
+                {
+                    Debug.Log("found player " + i.GetComponent<PlayerController>().playerName);
+                    SetPlaynameRpc(i.gameObject, j.GetComponent<NetworkGamePlayerLobby>().displayName);
+                }
+            }
+        }
+    }
+    [ClientRpc]
+    void SetPlaynameRpc(GameObject playerCon, string playerNet)
+    {
+        playerCon.GetComponent<PlayerController>().playerName = playerNet;
     }
 
     // Update is called once per frame
@@ -57,6 +82,7 @@ public class GameManager : NetworkBehaviour
                 if (sunflowerCount < MaxSunflower)
                     SunflowerSpawnTimeCount();
             }
+            SetNameUpdate();
             // BookSpawnTimeCount();
             // if (Input.GetKeyDown(KeyCode.M))
             // {
