@@ -6,5 +6,5 @@
 <br>
 <div align="center">
 This project was created to compete in the Global Game Jam 2024.<br>
-For more details, please visit <a href="https://globalgamejam.org/games/2024/hamster-1">our Game page</a> a on the Global Game Jam website.
+For more details, please visit <a href="https://globalgamejam.org/games/2024/hamster-1">our Game page</a> on the Global Game Jam website.
 </div>
